@@ -24,6 +24,7 @@ export default function FeaturedDishes() {
                 src={dish.image}
                 alt={dish.name}
                 fill
+                unoptimized
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
