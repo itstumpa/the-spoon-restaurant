@@ -1,8 +1,8 @@
+import type { ApiResponse, ReservationFormData } from "@/types";
 import { NextResponse } from "next/server";
-import type { ReservationFormData, ApiResponse } from "@/types";
 
 export async function POST(
-  request: Request
+  request: Request,
 ): Promise<NextResponse<ApiResponse>> {
   try {
     const body: ReservationFormData = await request.json();
@@ -18,7 +18,7 @@ export async function POST(
     ) {
       return NextResponse.json(
         { success: false, message: "All fields are required." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -28,12 +28,12 @@ export async function POST(
         success: true,
         message: "Thank you! Your table has been reserved.",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch {
     return NextResponse.json(
       { success: false, message: "Invalid request body." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

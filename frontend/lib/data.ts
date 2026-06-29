@@ -135,9 +135,20 @@ export const menuItems: MenuItem[] = [
   },
 ];
 
-export const featuredDishes: MenuItem[] = menuItems.filter((item) =>
-  ["BBQ Ribs", "Classic Burger", "New York Cheesecake"].includes(item.name)
-);
+export const featuredDishes: MenuItem[] = [
+  {
+    ...menuItems.find((item) => item.name === "BBQ Ribs")!,
+    tags: ["GF"],
+  },
+  {
+    ...menuItems.find((item) => item.name === "Classic Burger")!,
+    tags: [],
+  },
+  {
+    ...menuItems.find((item) => item.name === "New York Cheesecake")!,
+    tags: ["V"],
+  },
+];
 
 export const testimonials: Testimonial[] = [
   {
@@ -232,6 +243,12 @@ export const timeSlots: string[] = [
   "8:00 PM",
   "9:00 PM",
   "10:00 PM",
+];
+
+export const aboutStats: StatItem[] = [
+  { id: "st1", value: 16, suffix: "+", label: "Years Serving Austin" },
+  { id: "st2", value: 50, suffix: "mi", label: "Local Farm Radius" },
+  { id: "st3", value: 50000, suffix: "+", label: "Happy Guests Served" },
 ];
 
 export const navLinks = [

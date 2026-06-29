@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { teamMembers, values } from "@/lib/data";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -13,8 +13,8 @@ export default function AboutPage() {
           The Spoon was born in 2010 from a love of honest, hearty American
           cooking. We believe every meal should feel like home. What started as
           a small family kitchen on Maple Street has grown into a gathering
-          place where friends, families, and neighbors come together over
-          plates of comfort food made with love.
+          place where friends, families, and neighbors come together over plates
+          of comfort food made with love.
         </p>
         <div className="mt-8 w-20 h-1 bg-accent mx-auto rounded-full" />
       </section>
@@ -67,10 +67,7 @@ export default function AboutPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {values.map((value) => (
-            <article
-              key={value.id}
-              className="text-center p-6 sm:p-8"
-            >
+            <article key={value.id} className="text-center p-6 sm:p-8">
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
                 <span className="text-primary font-heading text-2xl sm:text-3xl font-bold">
                   {value.title.charAt(0)}

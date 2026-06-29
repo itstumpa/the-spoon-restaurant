@@ -1,8 +1,8 @@
+import type { ApiResponse, ContactFormData } from "@/types";
 import { NextResponse } from "next/server";
-import type { ContactFormData, ApiResponse } from "@/types";
 
 export async function POST(
-  request: Request
+  request: Request,
 ): Promise<NextResponse<ApiResponse>> {
   try {
     const body: ContactFormData = await request.json();
@@ -11,7 +11,7 @@ export async function POST(
     if (!body.name || !body.email || !body.message) {
       return NextResponse.json(
         { success: false, message: "All fields are required." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -21,12 +21,12 @@ export async function POST(
         success: true,
         message: "Thank you! We'll get back to you soon.",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch {
     return NextResponse.json(
       { success: false, message: "Invalid request body." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

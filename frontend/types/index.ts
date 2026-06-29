@@ -5,6 +5,14 @@ export interface MenuItem {
   price: string;
   image: string;
   category: "starters" | "mains" | "desserts" | "drinks";
+  tags?: string[];
+}
+
+export interface StatItem {
+  id: string;
+  value: number;
+  suffix: string;
+  label: string;
 }
 
 export interface Testimonial {
@@ -32,6 +40,7 @@ export interface ValueItem {
   id: string;
   title: string;
   description: string;
+  icon?: string;
 }
 
 export interface ReservationFormData {

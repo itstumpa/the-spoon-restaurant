@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, type FormEvent, type ChangeEvent } from "react";
 import { timeSlots } from "@/lib/data";
-import type { ReservationFormData, ApiResponse } from "@/types";
+import type { ApiResponse, ReservationFormData } from "@/types";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 interface FormErrors {
   fullName?: string;
@@ -59,13 +59,14 @@ const initialFormData: ReservationFormData = {
 };
 
 export default function ReservationsPage() {
-  const [formData, setFormData] = useState<ReservationFormData>(initialFormData);
+  const [formData, setFormData] =
+    useState<ReservationFormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({

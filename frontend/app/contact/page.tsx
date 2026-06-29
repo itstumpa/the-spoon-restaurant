@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, type FormEvent, type ChangeEvent } from "react";
+import type { ApiResponse, ContactFormData } from "@/types";
 import Image from "next/image";
-import type { ContactFormData, ApiResponse } from "@/types";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 interface FormErrors {
   name?: string;
@@ -47,7 +47,7 @@ export default function ContactPage() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -114,7 +114,10 @@ export default function ContactPage() {
 
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
-                  <span className="text-primary text-xl mt-0.5" aria-hidden="true">
+                  <span
+                    className="text-primary text-xl mt-0.5"
+                    aria-hidden="true"
+                  >
                     📍
                   </span>
                   <div>
@@ -128,7 +131,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <span className="text-primary text-xl mt-0.5" aria-hidden="true">
+                  <span
+                    className="text-primary text-xl mt-0.5"
+                    aria-hidden="true"
+                  >
                     📞
                   </span>
                   <div>
@@ -142,7 +148,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <span className="text-primary text-xl mt-0.5" aria-hidden="true">
+                  <span
+                    className="text-primary text-xl mt-0.5"
+                    aria-hidden="true"
+                  >
                     ✉️
                   </span>
                   <div>
@@ -156,7 +165,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <span className="text-primary text-xl mt-0.5" aria-hidden="true">
+                  <span
+                    className="text-primary text-xl mt-0.5"
+                    aria-hidden="true"
+                  >
                     🕐
                   </span>
                   <div>

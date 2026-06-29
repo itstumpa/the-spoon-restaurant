@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import { menuItems } from "@/lib/data";
 import type { MenuItem } from "@/types";
+import Image from "next/image";
+import { useState } from "react";
 
 type Category = "starters" | "mains" | "desserts" | "drinks";
 
@@ -18,7 +18,7 @@ export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState<Category>("starters");
 
   const filteredItems: MenuItem[] = menuItems.filter(
-    (item) => item.category === activeCategory
+    (item) => item.category === activeCategory,
   );
 
   return (
@@ -29,7 +29,8 @@ export default function MenuPage() {
           Our Menu
         </h1>
         <p className="mt-3 text-text-muted font-body text-base sm:text-lg max-w-xl mx-auto">
-          Crafted with care, cooked with soul — explore our selection of American classics.
+          Crafted with care, cooked with soul — explore our selection of
+          American classics.
         </p>
       </div>
 

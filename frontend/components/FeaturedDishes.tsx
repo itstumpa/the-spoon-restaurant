@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { featuredDishes } from "@/lib/data";
+import Image from "next/image";
 
 export default function FeaturedDishes() {
   return (
@@ -9,7 +9,8 @@ export default function FeaturedDishes() {
           American Classics
         </h2>
         <p className="mt-3 text-text-muted font-body text-base sm:text-lg max-w-xl mx-auto">
-          Our most beloved dishes, crafted with passion and the finest ingredients.
+          Our most beloved dishes, crafted with passion and the finest
+          ingredients.
         </p>
       </div>
 
