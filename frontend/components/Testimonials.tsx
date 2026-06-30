@@ -3,10 +3,15 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { testimonials } from "@/lib/data";
-import { AnimatePresence, motion, useInView, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import StarRating from "./StarRating";
 
 const quoteVariants = {
   enter: (dir: number) => ({
@@ -52,7 +57,10 @@ export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const { scrollY } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const { scrollY } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
   const parallaxY = useTransform(scrollY, [0, 1], [0, 80]);
   const opacity = useTransform(scrollY, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
@@ -175,7 +183,11 @@ export default function Testimonials() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      transition={{ delay: 0.3, type: "spring", stiffness: 300 }}
+                      transition={{
+                        delay: 0.3,
+                        type: "spring",
+                        stiffness: 300,
+                      }}
                       className="mb-6 flex items-center justify-center gap-1"
                     >
                       {Array.from({ length: 5 }, (_, i) => (
@@ -183,11 +195,17 @@ export default function Testimonials() {
                           key={i}
                           initial={{ scale: 0, rotate: -90 }}
                           animate={{ scale: 1, rotate: 0 }}
-                          transition={{ delay: 0.35 + i * 0.05, type: "spring", stiffness: 400 }}
+                          transition={{
+                            delay: 0.35 + i * 0.05,
+                            type: "spring",
+                            stiffness: 400,
+                          }}
                         >
                           <Star
                             className={`h-5 w-5 ${
-                              i < testimonial.rating ? "text-accent fill-accent" : "text-white/20"
+                              i < testimonial.rating
+                                ? "text-accent fill-accent"
+                                : "text-white/20"
                             }`}
                           />
                         </motion.span>
@@ -207,7 +225,11 @@ export default function Testimonials() {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+                          transition={{
+                            delay: 0.5,
+                            type: "spring",
+                            stiffness: 300,
+                          }}
                           className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-accent/40 ring-2 ring-white/5 shadow-lg"
                         >
                           <img
@@ -226,7 +248,9 @@ export default function Testimonials() {
                         <p className="font-heading font-semibold text-white text-base sm:text-lg">
                           {testimonial.name}
                         </p>
-                        <p className="text-white/50 text-sm font-body mt-1">Verified Guest</p>
+                        <p className="text-white/50 text-sm font-body mt-1">
+                          Verified Guest
+                        </p>
                       </div>
                     </footer>
                   </motion.div>
@@ -287,11 +311,20 @@ export default function Testimonials() {
       {/* Keyboard navigation */}
       <style jsx global>{`
         @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
+          0%,
+          100% {
+            transform: translate(0, 0) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
         }
-        .animate-blob { animation: blob 20s infinite ease-in-out; }
+        .animate-blob {
+          animation: blob 20s infinite ease-in-out;
+        }
       `}</style>
     </motion.section>
   );

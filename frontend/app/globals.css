@@ -24,9 +24,9 @@
   --color-accent-lighter: #e0b06a;
   --color-accent-foreground: #ffffff;
 
-  --color-text: #202020;
-  --color-text-muted: #efefef;
-  --color-text-light: #cdd1d8;
+  --color-text: 32 32 32;
+  --color-text-muted: 140 140 150;
+  --color-text-light: 205 209 216;
 
   --color-border: #d6d0c4;
   --color-ring: rgba(58, 90, 64, 0.3);

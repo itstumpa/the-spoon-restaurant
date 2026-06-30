@@ -71,7 +71,7 @@ export default function MeetOurChefs() {
                 className="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500"
               >
                 {/* Image */}
-                  <div className="relative h-52 sm:h-56 overflow-hidden rounded-t-2xl">
+                <div className="relative h-52 sm:h-56 overflow-hidden rounded-t-2xl">
                   <Image
                     src={chef.image}
                     alt={chef.name}

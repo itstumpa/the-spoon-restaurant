@@ -3,45 +3,30 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { motion, useInView } from "framer-motion";
-import { Award, CheckCircle2, Heart, Leaf, Truck, Users } from "lucide-react";
+import { Award, CheckCircle2, Leaf, Users } from "lucide-react";
 import { useRef } from "react";
 
 const features = [
   {
     icon: Leaf,
     title: "Farm-Fresh Ingredients",
-    description:
-      "Sourced daily from local farms within 50 miles, ensuring peak-season flavor and maximum freshness in every dish.",
-  },
-  {
-    icon: Heart,
-    title: "Crafted with Passion",
-    description:
-      "Every recipe is developed with generations of culinary expertise, blending Mediterranean tradition with modern technique.",
+    description: "Sourced daily from local farms within 50 miles.",
   },
   {
     icon: Award,
     title: "Award-Winning Chefs",
     description:
-      "Our kitchen is led by chefs with Michelin-star experience and international culinary competition victories.",
-  },
-  {
-    icon: Truck,
-    title: "Sustainable Practices",
-    description:
-      "Zero-waste kitchen philosophy, compostable packaging, and partnerships with local organic farms.",
+      "Led by Michelin-star chefs with international competition victories.",
   },
   {
     icon: Users,
     title: "Warm Hospitality",
-    description:
-      "From the moment you arrive, our team treats you like family — attentive service without pretension.",
+    description: "Warm attentive service that treats you like family.",
   },
   {
     icon: CheckCircle2,
     title: "Dietary Excellence",
-    description:
-      "Extensive gluten-free, vegetarian, vegan, and allergen-friendly options crafted with the same care as our signature dishes.",
+    description: "Dietary-friendly options crafted with the same care.",
   },
 ];
 
@@ -66,7 +51,7 @@ export default function WhyChooseUs() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-16 lg:py-20 overflow-hidden">
+    <section className="relative py-12 md:py-16 overflow-hidden">
       {/* Subtle background pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"
@@ -88,21 +73,20 @@ export default function WhyChooseUs() {
           <SectionHeading
             badge="Why Choose Us"
             title="Where Excellence Meets Authenticity"
-            subtitle="Six reasons why The Spoon has been Austin's most beloved Mediterranean destination for over 16 years."
           />
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {features.map((feature, i) => (
               <motion.article
                 key={feature.title}
                 variants={itemVariants}
                 custom={i}
-                className="group relative p-5 lg:p-6 bg-white rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500"
+                className="group relative px-5 lg:px-6 pt-4 pb-6 lg:pt-5 lg:pb-8 bg-white rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500 flex flex-col items-center"
               >
                 {/* Icon Wrapper */}
-                <div className="relative mb-4">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <feature.icon className="h-6 w-6" aria-hidden="true" />
+                <div className="relative mb-0 flex justify-center">
+                  <div className="inline-flex h-28 w-28 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <feature.icon className="h-14 w-14" aria-hidden="true" />
                   </div>
                   {/* Decorative accent */}
                   <div
@@ -111,10 +95,10 @@ export default function WhyChooseUs() {
                   />
                 </div>
 
-                <h3 className="text-lg font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-center text-lg font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-text-muted font-body text-sm leading-relaxed">
+                <p className="mt-2 text-center text-text-muted/80 font-body text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </motion.article>
