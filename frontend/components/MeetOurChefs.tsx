@@ -4,17 +4,8 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { teamMembers } from "@/lib/data";
 import { motion, useInView } from "framer-motion";
-import { Award, Heart, Leaf, Star, UtensilsCrossed } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-
-const iconMap: Record<string, typeof Award> = {
-  Award,
-  Heart,
-  Leaf,
-  Star,
-  UtensilsCrossed,
-};
 
 const containerVariants = {
   hidden: {},
@@ -37,7 +28,7 @@ export default function MeetOurChefs() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-surface">
+    <section className="relative py-6 md:py-12 overflow-hidden bg-bg-surface">
       {/* Subtle background pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"
@@ -62,7 +53,7 @@ export default function MeetOurChefs() {
             subtitle="Award-winning talent united by a passion for authentic Mediterranean flavors and warm hospitality."
           />
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+          <div className="mt-5 md:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {teamMembers.map((chef, i) => (
               <motion.article
                 key={chef.id}
@@ -95,31 +86,6 @@ export default function MeetOurChefs() {
                   <p className="text-text-muted font-body text-sm leading-relaxed">
                     {chef.bio}
                   </p>
-
-                  {/* Awards */}
-                  <div className="pt-4 border-t border-border">
-                    <div className="flex items-center gap-2 text-text-muted text-xs font-body mb-2">
-                      <Award
-                        className="h-3.5 w-3.5 text-accent"
-                        aria-hidden="true"
-                      />
-                      <span>Accolades</span>
-                    </div>
-                    <ul className="space-y-1.5">
-                      {chef.awards?.map((award, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-center gap-2 text-sm text-text-muted font-body"
-                        >
-                          <span
-                            className="h-1.5 w-1.5 rounded-full bg-primary"
-                            aria-hidden="true"
-                          />
-                          {award}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
               </motion.article>
             ))}

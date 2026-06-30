@@ -1,49 +1,28 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
 import {
   Calendar,
   CheckCircle2,
+  ChevronDown,
   Clock,
-  Mail,
   MapPin,
   Phone,
-  Sparkles,
+  Star,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 import { useRef, useState } from "react";
 
-const benefits = [
-  {
-    icon: CheckCircle2,
-    title: "Instant Confirmation",
-    description:
-      "Real-time availability with immediate booking confirmation via email and SMS.",
-  },
-  {
-    icon: Sparkles,
-    title: "Special Requests",
-    description:
-      "Dietary needs, seating preferences, celebrations — we accommodate it all.",
-  },
-  {
-    icon: Users,
-    title: "Flexible Changes",
-    description:
-      "Modify or cancel up to 2 hours before your reservation at no charge.",
-  },
-  {
-    icon: Calendar,
-    title: "Book 90 Days Ahead",
-    description:
-      "Plan your special occasions well in advance with our extended booking window.",
-  },
-];
+/* ────────────────────────────────
+   Data
+   ──────────────────────────────── */
 
 const timeSlots = [
+  "10:00 AM",
+  "10:30 AM",
   "11:00 AM",
   "11:30 AM",
   "12:00 PM",
@@ -60,42 +39,107 @@ const timeSlots = [
   "8:30 PM",
   "9:00 PM",
   "9:30 PM",
+  "10:00 PM",
 ];
+
+const guestOptions = Array.from({ length: 12 }, (_, i) => i + 1);
+
+const infoCards = [
+  {
+    icon: Clock,
+    title: "Opening Hours",
+    lines: ["Mon–Sun", "10:00 AM – 11:00 PM"],
+  },
+  {
+    icon: Phone,
+    title: "Contact",
+    lines: ["(512) 555-0187", "reservations@thespoon.com"],
+  },
+  {
+    icon: MapPin,
+    title: "Address",
+    lines: ["123 Maple Street", "Austin, TX 78701"],
+  },
+];
+
+/* ────────────────────────────────
+   Variants
+   ──────────────────────────────── */
 
 const containerVariants = {
   hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+};
+
+const fadeInLeft = {
+  hidden: { x: -40, opacity: 0 },
   visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 };
 
-const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
+const fadeInRight = {
+  hidden: { x: 40, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
+const fadeInUp = {
+  hidden: { y: 24, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 };
+
+const staggerItem = {
+  hidden: { y: 16, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
+const floatVariants = {
+  initial: { y: 0 },
+  animate: {
+    y: [0, -6, 0],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut" as const,
+    },
+  },
+};
+
+/* ────────────────────────────────
+   Component
+   ──────────────────────────────── */
 
 export default function ReservationSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const [formData, setFormData] = useState({
-    date: "",
-    time: "",
-    guests: "2",
     name: "",
     email: "",
     phone: "",
-    occasion: "",
+    date: "",
+    time: "",
+    guests: "2",
     requests: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would submit to an API
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);
   };
@@ -109,16 +153,29 @@ export default function ReservationSection() {
   };
 
   return (
-    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-dark">
-      {/* Background decorative elements */}
+    <section className="relative overflow-hidden bg-bg-muted py-6 md:py-12">
+      {/* ── Decorative background ── */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_30%,rgba(58,90,64,0.15),transparent_60%)]"
+        className="pointer-events-none absolute -left-32 top-0 h-[600px] w-[600px] rounded-full bg-primary/5 blur-3xl"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-20 -left-20 h-80 w-80 rounded-full bg-accent/5 blur-3xl"
+        className="pointer-events-none absolute -right-32 bottom-0 h-[500px] w-[500px] rounded-full bg-accent/5 blur-3xl"
         aria-hidden="true"
       />
+
+      {/* Subtle leaf‑like decoration */}
+      <svg
+        className="pointer-events-none absolute right-[5%] top-[10%] h-24 w-24 text-primary/10 lg:h-36 lg:w-36"
+        viewBox="0 0 100 100"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M50 10C45 30 30 45 10 50C30 55 45 70 50 90C55 70 70 55 90 50C70 45 55 30 50 10Z"
+          fill="currentColor"
+        />
+      </svg>
 
       <Container className="relative z-10">
         <motion.div
@@ -127,407 +184,350 @@ export default function ReservationSection() {
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          <SectionHeading
-            badge="Reserve Your Table"
-            title="Book Your Experience"
-            subtitle="Reserve a table in just a few clicks. We'll take care of the rest."
-            light
-          />
+          {/* ── Header ── */}
+          <motion.div
+            variants={fadeInUp}
+            className="mb-12 text-center md:mb-16"
+          >
+            <span className="mb-3 inline-block rounded-full border border-primary/20 bg-primary/5 px-5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Book a Table
+            </span>
+            <h2 className="font-heading text-[clamp(2rem,5vw,3.2rem)] font-bold leading-tight text-text">
+              Reserve Your <span className="text-primary">Experience</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-text-muted font-body">
+              Your table is just a few taps away. Choose your date, time, and
+              preferences — we&rsquo;ll handle the rest with instant
+              confirmation.
+            </p>
+          </motion.div>
 
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Left: Benefits & Info */}
+          {/* ── Two‑column grid ── */}
+          <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-12">
+            {/* ════════════════════════════════════
+                LEFT COLUMN – Restaurant Showcase
+               ════════════════════════════════════ */}
             <motion.div
-              variants={itemVariants}
-              custom={0}
-              className="space-y-8"
+              variants={fadeInLeft}
+              className="relative lg:col-span-7"
             >
-              <div className="space-y-6">
-                {benefits.map((benefit, i) => (
-                  <motion.div
-                    key={benefit.title}
-                    variants={itemVariants}
-                    custom={i + 1}
-                    className="flex gap-4 p-5 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-primary/30 transition-all duration-300"
-                  >
-                    <div className="flex-shrink-0 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20 text-primary">
-                      <benefit.icon className="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <h4 className="font-heading font-semibold text-white">
-                        {benefit.title}
-                      </h4>
-                      <p className="mt-1 text-white/60 font-body text-sm">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <div className="group relative h-full overflow-hidden rounded-3xl shadow-elevated">
+                <Image
+                  src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=85"
+                  alt="Elegant restaurant interior with warm ambient lighting"
+                  width={900}
+                  height={700}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  priority
+                />
 
-              {/* Contact Info */}
-              <div className="pt-6 border-t border-white/10 space-y-4">
-                <h4 className="font-heading font-semibold text-white">
-                  Questions? Contact Us
-                </h4>
-                <div className="space-y-3">
-                  {[
-                    {
-                      icon: MapPin,
-                      text: "123 Maple Street, Austin, TX 78701",
-                    },
-                    { icon: Phone, text: "(512) 555-0187" },
-                    { icon: Mail, text: "reservations@thespoon.com" },
-                    { icon: Clock, text: "Mon–Sun: 11:00 AM – 10:00 PM" },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-3 text-white/70 font-body text-sm"
-                    >
-                      <item.icon
-                        className="h-5 w-5 text-accent shrink-0"
-                        aria-hidden="true"
-                      />
-                      <span>{item.text}</span>
+                {/* Dark gradient overlay */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                {/* ── Floating badge – Rating ── */}
+                <motion.div
+                  variants={floatVariants}
+                  initial="initial"
+                  animate="animate"
+                  className="absolute bottom-6 left-6 flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-3 shadow-lg backdrop-blur-xl"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400/90">
+                    <Star className="h-5 w-5 fill-white text-white" />
+                  </div>
+                  <div>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-xl font-bold text-white">4.9</span>
+                      <span className="text-sm text-white/70">/ 5.0</span>
                     </div>
-                  ))}
-                </div>
+                    <p className="text-xs text-white/60">
+                      5,000+ Happy Customers
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* ── Floating badge – Since 2010 ── */}
+                <motion.div
+                  variants={floatVariants}
+                  initial="initial"
+                  animate="animate"
+                  className="absolute right-6 top-6 rounded-2xl border border-white/20 bg-white/10 px-4 py-2.5 shadow-lg backdrop-blur-xl"
+                >
+                  <p className="text-center text-xs font-semibold uppercase tracking-wider text-white/80">
+                    Since 2010
+                  </p>
+                  <p className="text-center text-[10px] text-white/50">
+                    Award Winning
+                  </p>
+                </motion.div>
               </div>
             </motion.div>
 
-            {/* Right: Booking Form */}
-            <motion.div variants={itemVariants} custom={5}>
-              <div className="relative bg-white rounded-3xl p-6 sm:p-8 shadow-elevated">
-                {/* Decorative top accent */}
-                <div
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-b-full"
-                  aria-hidden="true"
-                />
-
+            {/* ════════════════════════════════════
+                RIGHT COLUMN – Booking Form
+               ════════════════════════════════════ */}
+            <motion.div variants={fadeInRight} className="lg:col-span-5">
+              <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-elevated sm:p-8">
                 {submitted ? (
-                  <div className="text-center py-12">
-                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
-                      <CheckCircle2
-                        className="h-8 w-8 text-primary"
-                        aria-hidden="true"
-                      />
+                  /* ── Success state ── */
+                  <motion.div
+                    initial={{ scale: 0.95, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="flex flex-col items-center py-10 text-center"
+                  >
+                    <div className="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+                      <CheckCircle2 className="h-10 w-10 text-primary" />
                     </div>
-                    <h3 className="text-2xl font-heading font-bold text-text mb-2">
+                    <h3 className="font-heading text-2xl font-bold text-text">
                       Reservation Confirmed!
                     </h3>
-                    <p className="text-text-muted font-body">
-                      We've sent a confirmation to your email. We look forward
-                      to serving you!
+                    <p className="mt-2 max-w-xs text-sm leading-relaxed text-text-muted">
+                      Thank you! A confirmation email is on its way to your
+                      inbox. We can&rsquo;t wait to serve you.
                     </p>
                     <Button
                       variant="outline"
                       size="lg"
-                      className="mt-6"
+                      className="mt-8"
                       onClick={() => setSubmitted(false)}
                     >
                       Book Another Table
                     </Button>
-                  </div>
+                  </motion.div>
                 ) : (
-                  <form
-                    onSubmit={handleSubmit}
-                    className="space-y-5"
-                    noValidate
-                  >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Date */}
-                      <div>
-                        <label
-                          htmlFor="date"
-                          className="block text-sm font-medium text-text mb-1.5"
-                        >
-                          Date <span className="text-destructive">*</span>
-                        </label>
-                        <div className="relative">
-                          <Calendar
-                            className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
-                            aria-hidden="true"
-                          />
+                  <>
+                    {/* ── Form header ── */}
+                    <div className="mb-6">
+                      <span className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">
+                        Reserve Your Table
+                      </span>
+                      <h3 className="mt-1 font-heading text-2xl font-bold text-text">
+                        Book a Table
+                      </h3>
+                    </div>
+
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-4"
+                      noValidate
+                    >
+                      {/* ── Row 1: Name, Email ── */}
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div>
+                          <label
+                            htmlFor="res-name"
+                            className="mb-1.5 block text-sm font-medium text-text"
+                          >
+                            Full Name{" "}
+                            <span className="text-destructive">*</span>
+                          </label>
                           <input
-                            type="date"
-                            id="date"
-                            name="date"
-                            value={formData.date}
+                            type="text"
+                            id="res-name"
+                            name="name"
+                            value={formData.name}
                             onChange={handleChange}
                             required
-                            min={new Date().toISOString().split("T")[0]}
-                            max={
-                              new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
-                                .toISOString()
-                                .split("T")[0]
-                            }
-                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
+                            placeholder="John Doe"
+                            className="w-full rounded-xl border border-border bg-white px-4 py-3 text-text placeholder:text-text-muted transition-all duration-200 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="res-email"
+                            className="mb-1.5 block text-sm font-medium text-text"
+                          >
+                            Email <span className="text-destructive">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            id="res-email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="john@example.com"
+                            className="w-full rounded-xl border border-border bg-white px-4 py-3 text-text placeholder:text-text-muted transition-all duration-200 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
                           />
                         </div>
                       </div>
 
-                      {/* Time */}
+                      {/* ── Row 2: Phone ── */}
                       <div>
                         <label
-                          htmlFor="time"
-                          className="block text-sm font-medium text-text mb-1.5"
+                          htmlFor="res-phone"
+                          className="mb-1.5 block text-sm font-medium text-text"
                         >
-                          Time <span className="text-destructive">*</span>
+                          Phone Number{" "}
+                          <span className="text-destructive">*</span>
                         </label>
                         <div className="relative">
-                          <Clock
-                            className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
-                            aria-hidden="true"
-                          />
-                          <select
-                            id="time"
-                            name="time"
-                            value={formData.time}
+                          <Phone className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-text-muted" />
+                          <input
+                            type="tel"
+                            id="res-phone"
+                            name="phone"
+                            value={formData.phone}
                             onChange={handleChange}
                             required
-                            className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-text appearance-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
-                          >
-                            <option value="">Select time</option>
-                            {timeSlots.map((slot) => (
-                              <option key={slot} value={slot}>
-                                {slot}
-                              </option>
-                            ))}
-                          </select>
-                          <svg
-                            className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </svg>
+                            placeholder="(512) 555-0187"
+                            className="w-full rounded-xl border border-border bg-white py-3 pl-11 pr-4 text-text placeholder:text-text-muted transition-all duration-200 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
+                          />
                         </div>
                       </div>
-                    </div>
 
-                    {/* Guests */}
-                    <div>
-                      <label
-                        htmlFor="guests"
-                        className="block text-sm font-medium text-text mb-1.5"
-                      >
-                        Guests <span className="text-destructive">*</span>
-                      </label>
-                      <div className="relative">
-                        <Users
-                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
-                          aria-hidden="true"
-                        />
-                        <select
-                          id="guests"
-                          name="guests"
-                          value={formData.guests}
-                          onChange={handleChange}
-                          required
-                          className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-text appearance-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
+                      {/* ── Row 3: Date, Time, Guests ── */}
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                        <div>
+                          <label
+                            htmlFor="res-date"
+                            className="mb-1.5 block text-sm font-medium text-text"
+                          >
+                            Date <span className="text-destructive">*</span>
+                          </label>
+                          <div className="relative">
+                            <Calendar className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-text-muted" />
+                            <input
+                              type="date"
+                              id="res-date"
+                              name="date"
+                              value={formData.date}
+                              onChange={handleChange}
+                              required
+                              min={new Date().toISOString().split("T")[0]}
+                              max={
+                                new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
+                                  .toISOString()
+                                  .split("T")[0]
+                              }
+                              className="w-full rounded-xl border border-border bg-white py-3 pl-11 pr-4 text-text transition-all duration-200 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="res-time"
+                            className="mb-1.5 block text-sm font-medium text-text"
+                          >
+                            Time <span className="text-destructive">*</span>
+                          </label>
+                          <div className="relative">
+                            <Clock className="pointer-events-none absolute left-3.5 top-1/2 z-10 h-5 w-5 -translate-y-1/2 text-text-muted" />
+                            <select
+                              id="res-time"
+                              name="time"
+                              value={formData.time}
+                              onChange={handleChange}
+                              required
+                              className="w-full appearance-none rounded-xl border border-border bg-white py-3 pl-11 pr-10 text-text transition-all duration-200 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
+                            >
+                              <option value="">Select time</option>
+                              {timeSlots.map((slot) => (
+                                <option key={slot} value={slot}>
+                                  {slot}
+                                </option>
+                              ))}
+                            </select>
+                            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-text-muted" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="res-guests"
+                            className="mb-1.5 block text-sm font-medium text-text"
+                          >
+                            Guests <span className="text-destructive">*</span>
+                          </label>
+                          <div className="relative">
+                            <Users className="pointer-events-none absolute left-3.5 top-1/2 z-10 h-5 w-5 -translate-y-1/2 text-text-muted" />
+                            <select
+                              id="res-guests"
+                              name="guests"
+                              value={formData.guests}
+                              onChange={handleChange}
+                              required
+                              className="w-full appearance-none rounded-xl border border-border bg-white py-3 pl-11 pr-10 text-text transition-all duration-200 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
+                            >
+                              {guestOptions.map((num) => (
+                                <option key={num} value={num.toString()}>
+                                  {num} {num === 1 ? "Guest" : "Guests"}
+                                </option>
+                              ))}
+                              <option value="13">13+ (Private Dining)</option>
+                            </select>
+                            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-text-muted" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* ── Row 4: Special Requests ── */}
+                      <div>
+                        <label
+                          htmlFor="res-requests"
+                          className="mb-1.5 block text-sm font-medium text-text"
                         >
-                          {Array.from({ length: 12 }, (_, i) => i + 1).map(
-                            (num) => (
-                              <option key={num} value={num.toString()}>
-                                {num} {num === 1 ? "Guest" : "Guests"}
-                              </option>
-                            ),
-                          )}
-                          <option value="13">13+ (Private Dining)</option>
-                        </select>
-                        <svg
-                          className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-
-                    {/* Occasion */}
-                    <div>
-                      <label
-                        htmlFor="occasion"
-                        className="block text-sm font-medium text-text mb-1.5"
-                      >
-                        Occasion (Optional)
-                      </label>
-                      <div className="relative">
-                        <Sparkles
-                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
-                          aria-hidden="true"
-                        />
-                        <select
-                          id="occasion"
-                          name="occasion"
-                          value={formData.occasion}
+                          Special Requests{" "}
+                          <span className="font-normal text-text-muted">
+                            (Optional)
+                          </span>
+                        </label>
+                        <textarea
+                          id="res-requests"
+                          name="requests"
+                          value={formData.requests}
                           onChange={handleChange}
-                          className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-text appearance-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
-                        >
-                          <option value="">Select occasion</option>
-                          <option value="anniversary">Anniversary</option>
-                          <option value="birthday">Birthday</option>
-                          <option value="business">Business Dinner</option>
-                          <option value="date">Date Night</option>
-                          <option value="family">Family Gathering</option>
-                          <option value="other">Other</option>
-                        </select>
-                        <svg
-                          className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-
-                    {/* Name */}
-                    <div className="sm:col-span-2">
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-text mb-1.5"
-                      >
-                        Full Name <span className="text-destructive">*</span>
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          placeholder="John Doe"
-                          className="w-full pl-4 pr-4 py-3 rounded-xl border border-border bg-white text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
+                          rows={2}
+                          placeholder="Dietary restrictions, seating preference, celebrations…"
+                          className="w-full resize-none rounded-xl border border-border bg-white p-4 text-text placeholder:text-text-muted transition-all duration-200 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
                         />
                       </div>
-                    </div>
 
-                    {/* Email */}
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-text mb-1.5"
-                      >
-                        Email <span className="text-destructive">*</span>
-                      </label>
-                      <div className="relative">
-                        <Mail
-                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
-                          aria-hidden="true"
-                        />
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          placeholder="john@example.com"
-                          className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm font-medium text-text mb-1.5"
-                      >
-                        Phone <span className="text-destructive">*</span>
-                      </label>
-                      <div className="relative">
-                        <Phone
-                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
-                          aria-hidden="true"
-                        />
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          required
-                          placeholder="(512) 555-0187"
-                          className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Special Requests */}
-                    <div className="sm:col-span-2">
-                      <label
-                        htmlFor="requests"
-                        className="block text-sm font-medium text-text mb-1.5"
-                      >
-                        Special Requests
-                      </label>
-                      <textarea
-                        id="requests"
-                        name="requests"
-                        value={formData.requests}
-                        onChange={handleChange}
-                        rows={3}
-                        placeholder="Dietary restrictions, seating preference, accessibility needs..."
-                        className="w-full p-4 rounded-xl border border-border bg-white text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200 resize-none"
-                      />
-                    </div>
-
-                    {/* Submit */}
-                    <div className="pt-2">
+                      {/* ── CTA ── */}
                       <Button
                         type="submit"
                         variant="default"
                         size="lg"
-                        className="w-full shadow-elevated"
+                        className="w-full bg-primary text-base text-white shadow-elevated transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-light hover:shadow-[0_12px_28px_rgba(109,140,46,0.35)] active:translate-y-0"
                       >
-                        {submitted ? "Confirming..." : "Reserve Table"}
+                        Book a Table
                       </Button>
-                      <p className="mt-3 text-center text-sm text-text-muted">
-                        By booking, you agree to our{" "}
-                        <a
-                          href="/terms"
-                          className="text-primary hover:underline"
-                        >
-                          Terms
-                        </a>{" "}
-                        &{" "}
-                        <a
-                          href="/privacy"
-                          className="text-primary hover:underline"
-                        >
-                          Privacy Policy
-                        </a>
-                      </p>
-                    </div>
-                  </form>
+                    </form>
+                  </>
                 )}
               </div>
             </motion.div>
           </div>
+
+          {/* ════════════════════════════════════
+              Bottom Info Cards
+             ════════════════════════════════════ */}
+          <motion.div
+            variants={containerVariants}
+            className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3"
+          >
+            {infoCards.map((card) => (
+              <motion.div
+                key={card.title}
+                variants={staggerItem}
+                className="flex items-start gap-4 rounded-2xl border border-border/60 bg-white/70 p-5 shadow-sm backdrop-blur-sm transition-shadow duration-300 hover:shadow-md"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                  <card.icon className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-heading text-sm font-semibold text-text">
+                    {card.title}
+                  </h4>
+                  {card.lines.map((line, i) => (
+                    <p key={i} className="text-sm leading-snug text-text-muted">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </Container>
     </section>

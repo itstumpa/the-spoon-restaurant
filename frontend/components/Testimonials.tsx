@@ -57,12 +57,12 @@ export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const { scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const parallaxY = useTransform(scrollY, [0, 1], [0, 80]);
-  const opacity = useTransform(scrollY, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   const goTo = useCallback(
     (index: number) => {

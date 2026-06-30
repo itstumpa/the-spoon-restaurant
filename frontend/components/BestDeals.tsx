@@ -1,199 +1,326 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Clock, Gift, Users } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-const deals = [
+// ---------- Data ----------
+interface Offer {
+  id: string;
+  image: string;
+  discountBadge: string;
+  badgeColor: string;
+  title: string;
+  description: string;
+  validity: string;
+  cta: string;
+}
+
+const offers: Offer[] = [
   {
-    id: "deal1",
-    title: "Lunch Express",
-    description:
-      "Two-course lunch menu with starter and main. Perfect for business meetings or a quick gourmet break.",
-    price: "$18",
-    period: "/person",
-    originalPrice: "$26",
+    id: "offer-1",
     image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop&q=80",
-    features: ["Mon–Fri 11am–3pm", "Starter + Main", "Coffee/Tea Included"],
-    badge: "Best Value",
-    badgeColor: "bg-accent text-accent-foreground",
-    icon: Clock,
-    cta: "Book Lunch",
+      "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=900&fit=crop&q=80",
+    discountBadge: "30% OFF",
+    badgeColor: "bg-accent",
+    title: "Premium Steak Night",
+    description: "Prime-cut grilled steak with truffle mash and red wine jus",
+    validity: "Mon\u2013Thu \u00b7 6pm\u20139pm",
+    cta: "View Deal",
   },
   {
-    id: "deal2",
-    title: "Family Feast",
-    description:
-      "Complete dinner for 4 with shared starters, 4 mains, 2 sides, and a dessert to share. Great for celebrations.",
-    price: "$89",
-    period: "/4 people",
-    originalPrice: "$125",
+    id: "offer-2",
     image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&q=80",
-    features: ["Daily after 5pm", "Feeds 4 People", "Bottle of House Wine"],
-    badge: "Popular",
-    badgeColor: "bg-primary text-primary-foreground",
-    icon: Users,
-    cta: "Reserve Table",
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=900&fit=crop&q=80",
+    discountBadge: "Buy 1 Get 1",
+    badgeColor: "bg-primary",
+    title: "Artisan Pizza Duo",
+    description:
+      "Two hand-tossed pizzas with premium toppings and a side of dips",
+    validity: "Every Tuesday \u00b7 All day",
+    cta: "Order Now",
   },
   {
-    id: "deal3",
-    title: "Date Night",
-    description:
-      "Romantic dinner for two with a shared appetizer, two mains, a bottle of wine, and a shared dessert.",
-    price: "$75",
-    period: "/couple",
-    originalPrice: "$105",
+    id: "offer-3",
     image:
-      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop&q=80",
-    features: [
-      "Daily after 6pm",
-      "2 Courses + Dessert",
-      "Bottle of Wine Included",
-    ],
-    badge: "Romantic",
-    badgeColor: "bg-rose-500 text-white",
-    icon: Gift,
-    cta: "Book Now",
+      "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&h=900&fit=crop&q=80",
+    discountBadge: "Today's Special",
+    badgeColor: "bg-rose-500",
+    title: "Truffle Mushroom Pasta",
+    description:
+      "House-made fettuccine with wild mushrooms in a creamy truffle sauce",
+    validity: "Available until 10pm",
+    cta: "View Deal",
+  },
+  {
+    id: "offer-4",
+    image:
+      "https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&h=900&fit=crop&q=80",
+    discountBadge: "20% OFF",
+    badgeColor: "bg-blue-500",
+    title: "Mediterranean Seafood",
+    description:
+      "Fresh catch of the day with lemon herb butter and roasted vegetables",
+    validity: "Fri\u2013Sun \u00b7 Dinner only",
+    cta: "Order Now",
+  },
+  {
+    id: "offer-5",
+    image:
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=900&fit=crop&q=80",
+    discountBadge: "Free Dessert",
+    badgeColor: "bg-purple-500",
+    title: "Gourmet Burger Combo",
+    description:
+      "Angus beef burger with aged cheddar, caramelized onions, and truffle fries",
+    validity: "Daily \u00b7 Lunch & Dinner",
+    cta: "View Deal",
+  },
+  {
+    id: "offer-6",
+    image:
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=900&fit=crop&q=80",
+    discountBadge: "Chef's Pick",
+    badgeColor: "bg-orange-500",
+    title: "Harvest Bowl Delight",
+    description:
+      "Seasonal vegetables, quinoa, roasted chickpeas, and tahini dressing",
+    validity: "Available all week",
+    cta: "Order Now",
   },
 ];
 
-const containerVariants = {
-  hidden: {},
+// ---------- Motion Variants ----------
+const leftVariants = {
+  hidden: { x: -40, opacity: 0 },
   visible: {
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 };
 
-const itemVariants = {
-  hidden: { y: 40, opacity: 0 },
+const cardVariants = {
+  hidden: { x: 30, opacity: 0 },
   visible: {
-    y: 0,
+    x: 0,
     opacity: 1,
     transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 };
 
+// ---------- Component ----------
 export default function BestDeals() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start" },
+    [Autoplay({ delay: 5000, stopOnInteraction: false })],
+  );
+
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const onSelect = useCallback((api: any) => {
+    if (!api) return;
+    setPrevBtnDisabled(!api.canScrollPrev());
+    setNextBtnDisabled(!api.canScrollNext());
+    setSelectedIndex(api.selectedScrollSnap());
+  }, []);
+
+  const onInit = useCallback((api: any) => {
+    setScrollSnaps(api.scrollSnapList());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onInit(emblaApi);
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onInit);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
+  }, [emblaApi, onInit, onSelect]);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback(
+    (index: number) => emblaApi?.scrollTo(index),
+    [emblaApi],
+  );
+
+  const handleMouseEnter = useCallback(() => {
+    const autoplay = (emblaApi?.plugins() as any)?.autoplay;
+    if (autoplay) autoplay.stop();
+  }, [emblaApi]);
+
+  const handleMouseLeave = useCallback(() => {
+    const autoplay = (emblaApi?.plugins() as any)?.autoplay;
+    if (autoplay) autoplay.play();
+  }, [emblaApi]);
 
   return (
-    <section className="relative py-16 lg:py-20 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-6 md:py-12 lg:py-24 overflow-hidden bg-bg"
+    >
+      {/* Decorative background shapes */}
+      <div
+        className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full opacity-[0.06] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgb(109,140,46) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.06] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgb(200,133,58) 0%, transparent 70%)",
+        }}
+      />
+
       <Container>
         <motion.div
-          ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94] as const,
+              },
+            },
+          }}
         >
-          <SectionHeading
-            badge="Special Offers"
-            title="Best Deals For You"
-            subtitle="Curated dining packages designed to give you the best value without compromising on quality or experience."
-          />
+          <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-10 lg:gap-12 items-center">
+            {/* Left Column — Title Section */}
+            <motion.div
+              variants={leftVariants}
+              className="flex flex-col items-start text-left"
+            >
+              <span className="mb-3 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] bg-primary/10 text-primary">
+                Special Offers
+              </span>
+              <h2 className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight text-text mt-1">
+                Best Deals <span className="text-primary">For You</span>
+              </h2>
+              <p className="mt-4 text-text-muted font-body text-base leading-relaxed max-w-sm">
+                Curated dining packages designed to give you the best value
+                without compromising on quality or experience.
+              </p>
+              <Link href="/menu" className="mt-8">
+                <Button variant="default" size="lg" className="group">
+                  View All Offers
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </motion.div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {deals.map((deal, i) => (
-              <motion.article
-                key={deal.id}
-                variants={itemVariants}
-                custom={i}
-                className="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500"
-              >
-                {/* Image */}
-                <div className="relative h-40 overflow-hidden">
-                  <Image
-                    src={deal.image}
-                    alt={deal.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span
-                      className={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${deal.badgeColor}`}
+            {/* Right Column — Carousel */}
+            <motion.div
+              variants={cardVariants}
+              className="min-w-0 relative"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="overflow-hidden rounded-[24px]" ref={emblaRef}>
+                <div className="flex -ml-4">
+                  {offers.map((offer) => (
+                    <div
+                      key={offer.id}
+                      className="min-w-0 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-4"
                     >
-                      {deal.badge}
-                    </span>
-                  </div>
-                  {/* Savings indicator */}
-                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm text-text text-xs font-semibold">
-                    Save{" "}
-                    {Math.round(
-                      ((parseFloat(deal.originalPrice.replace("$", "")) -
-                        parseFloat(deal.price.replace("$", ""))) /
-                        parseFloat(deal.originalPrice.replace("$", ""))) *
-                        100,
-                    )}
-                    %
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 space-y-4">
-                  <div className="flex items-center gap-2 text-primary font-semibold text-sm">
-                    <deal.icon className="h-4 w-4" aria-hidden="true" />
-                    <span className="sr-only">{deal.title}</span>
-                  </div>
-
-                  <h3 className="text-xl font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">
-                    {deal.title}
-                  </h3>
-                  <p className="text-text-muted font-body text-sm leading-relaxed">
-                    {deal.description}
-                  </p>
-
-                  {/* Features */}
-                  <ul className="space-y-2 pt-2 border-t border-border">
-                    {deal.features.map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-2 text-sm text-text-muted font-body"
-                      >
-                        <span
-                          className="h-1.5 w-1.5 rounded-full bg-primary"
-                          aria-hidden="true"
+                      <div className="relative h-[420px] rounded-[24px] overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500 group/card border border-white/20">
+                        {/* Image */}
+                        <Image
+                          src={offer.image}
+                          alt={offer.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-700 group-hover/card:scale-105"
                         />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
 
-                  {/* Price */}
-                  <div className="flex items-baseline gap-3 pt-2">
-                    <span className="text-3xl font-heading font-bold text-primary">
-                      {deal.price}
-                    </span>
-                    <span className="text-text-muted line-through">
-                      {deal.originalPrice}
-                    </span>
-                    <span className="ml-auto text-text-muted text-sm">
-                      {deal.period}
-                    </span>
-                  </div>
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
-                  {/* CTA */}
-                  <Link href="/reservations">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
-                    >
-                      {deal.cta}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </Link>
+                        {/* Discount Badge — Top Right */}
+                        <div className="absolute top-4 right-4">
+                          <span
+                            className={`inline-block px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full ${offer.badgeColor} text-white shadow-lg`}
+                          >
+                            {offer.discountBadge}
+                          </span>
+                        </div>
+
+                        {/* Content — Bottom */}
+                        <div className="absolute bottom-0 left-0 right-0 p-5 pb-6">
+                          <h3 className="font-heading text-lg font-bold text-white">
+                            {offer.title}
+                          </h3>
+                          <p className="mt-1 text-sm text-white/75 font-body leading-relaxed line-clamp-2">
+                            {offer.description}
+                          </p>
+                          <div className="mt-3 pt-3 border-t border-white/15 flex items-center justify-between">
+                            <span className="text-xs text-white/55 font-body">
+                              {offer.validity}
+                            </span>
+                            <span className="text-accent font-semibold text-sm font-body flex items-center gap-1.5 transition-all duration-300 group-hover/card:gap-2.5">
+                              {offer.cta}
+                              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </motion.article>
-            ))}
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={scrollPrev}
+                disabled={prevBtnDisabled}
+                className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-card hover:shadow-elevated flex items-center justify-center text-text hover:text-primary transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                aria-label="Previous offers"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={scrollNext}
+                disabled={nextBtnDisabled}
+                className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-card hover:shadow-elevated flex items-center justify-center text-text hover:text-primary transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                aria-label="Next offers"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+
+              {/* Pagination Dots */}
+              <div className="flex justify-center mt-6 gap-2">
+                {scrollSnaps.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollTo(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      index === selectedIndex
+                        ? "w-8 bg-primary"
+                        : "w-2 bg-primary/25 hover:bg-primary/50"
+                    }`}
+                    aria-label={`Go to offer ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </Container>
