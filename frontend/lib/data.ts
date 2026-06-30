@@ -193,6 +193,12 @@ export const featuredDishes: MenuItem[] = [
       "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=800&h=600&fit=crop&q=80",
     tags: ["V"],
   },
+  {
+    ...menuItems.find((item) => item.name === "Grilled Salmon")!,
+    image:
+      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&h=600&fit=crop&q=80",
+    tags: ["GF"],
+  },
 ];
 
 export const testimonials: Testimonial[] = [
@@ -240,28 +246,39 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: "tm2",
-    name: "Lisa",
-    role: "Manager",
+    name: "Chef Ana",
+    role: "Pastry Chef",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80",
-    bio: "Creating warm dining experiences for over a decade.",
+      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&h=400&fit=crop&q=80",
+    bio: "Crafting exquisite desserts and pastries with European flair.",
     experience: "12+ years",
-    specialty: "Hospitality Management & Guest Relations",
+    specialty: "French Pastry & Desserts",
     awards: [
-      "Restaurant Manager of the Year 2021",
-      "Top 50 Hospitality Leaders 2023",
+      "Best Pastry Chef 2022",
+      "International Dessert Competition Gold 2023",
     ],
   },
   {
     id: "tm3",
-    name: "Jake",
-    role: "Sous Chef",
+    name: "Chef Diego",
+    role: "Grill Master",
     image:
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&q=80",
-    bio: "Specializing in farm-to-table seasonal cuisine.",
+      "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=400&h=400&fit=crop&q=80",
+    bio: "Master of open-fire cooking and prime cuts from around the world.",
     experience: "8+ years",
-    specialty: "Farm-to-Table & Seasonal Cuisine",
-    awards: ["Rising Star Chef 2022", "Sustainable Cuisine Award 2023"],
+    specialty: "Grill & Smoke Techniques",
+    awards: ["Rising Star Chef 2022", "Best Steakhouse Menu 2023"],
+  },
+  {
+    id: "tm4",
+    name: "Chef Nina",
+    role: "Sushi Chef",
+    image:
+      "https://plus.unsplash.com/premium_photo-1661778091956-15dbe6e47442?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    bio: "Expert in traditional Japanese techniques with a Mediterranean twist.",
+    experience: "15+ years",
+    specialty: "Japanese Fusion & Seafood",
+    awards: ["Best New Fusion Concept 2023", "Seafood Excellence Award 2024"],
   },
 ];
 

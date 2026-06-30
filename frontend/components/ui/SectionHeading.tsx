@@ -29,7 +29,7 @@ export function SectionHeading({
       {badge && (
         <span
           className={cn(
-            "mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em]",
+            "mb-2 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em]",
             light ? "bg-white/10 text-accent" : "bg-primary/10 text-primary",
           )}
         >
@@ -47,7 +47,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            "mt-4 text-base leading-relaxed md:text-lg",
+            "mt-2 text-base leading-relaxed md:text-lg",
             light ? "text-white/70" : "text-text-muted",
           )}
         >

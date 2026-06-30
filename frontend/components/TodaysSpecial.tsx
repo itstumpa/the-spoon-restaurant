@@ -52,6 +52,20 @@ const specials = [
     tags: ["V", "GF"],
     icon: Leaf,
   },
+  {
+    id: "sp4",
+    name: "Black Angus Steak",
+    description:
+      "Prime 12oz ribeye grilled to perfection with garlic herb butter. Served with truffle mashed potatoes and roasted asparagus premium.",
+    price: "$38.00",
+    originalPrice: "$44.00",
+    image:
+      "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&h=600&fit=crop&q=80",
+    badge: "Premium",
+    badgeColor: "bg-amber-500 text-white",
+    tags: ["GF"],
+    icon: Flame,
+  },
 ];
 
 const containerVariants = {
@@ -81,7 +95,7 @@ export default function TodaysSpecial() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-dark">
+    <section className="relative py-6 md:py-12 overflow-hidden bg-bg-dark">
       {/* Background decorative elements */}
       <div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(58,90,64,0.12),transparent_60%)]"
@@ -106,7 +120,7 @@ export default function TodaysSpecial() {
             light
           />
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {specials.map((special, i) => (
               <motion.article
                 key={special.id}

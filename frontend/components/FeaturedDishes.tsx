@@ -35,7 +35,7 @@ export default function FeaturedDishes() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-16 lg:py-20 overflow-hidden">
+    <section className="relative py-6 lg:py-12 overflow-hidden">
       <Container>
         <motion.div
           ref={ref}
@@ -47,12 +47,12 @@ export default function FeaturedDishes() {
           }}
         >
           <SectionHeading
-            badge="From Our Kitchen"
+            badge="Chef's Specials"
             title="American Classics"
             subtitle="Our most beloved dishes, crafted with passion and the finest Mediterranean ingredients."
           />
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {featuredDishes.map((dish, i) => (
               <motion.article
                 key={dish.id}
@@ -120,8 +120,8 @@ export default function FeaturedDishes() {
           {/* View Full Menu CTA */}
           <motion.div
             variants={dishVariants}
-            custom={3}
-            className="mt-12 text-center"
+            custom={4}
+            className="mt-8 text-center"
           >
             <Link href="/menu">
               <Button variant="default" size="lg">

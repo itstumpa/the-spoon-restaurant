@@ -62,7 +62,7 @@ export default function MeetOurChefs() {
             subtitle="Award-winning talent united by a passion for authentic Mediterranean flavors and warm hospitality."
           />
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {teamMembers.map((chef, i) => (
               <motion.article
                 key={chef.id}
@@ -79,14 +79,6 @@ export default function MeetOurChefs() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Experience badge */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm text-text text-xs font-semibold">
-                    {chef.experience}
-                  </div>
-                  {/* Specialty badge */}
-                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-primary/90 text-primary-foreground text-xs font-semibold">
-                    {chef.specialty}
-                  </div>
                 </div>
 
                 {/* Content */}
