@@ -170,7 +170,7 @@ export default function BestDeals() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-6 md:py-12 lg:py-24 overflow-hidden bg-bg"
+      className="relative py-6 md:py-12 overflow-hidden bg-bg"
     >
       {/* Decorative background shapes */}
       <div

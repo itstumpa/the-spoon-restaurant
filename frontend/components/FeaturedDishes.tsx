@@ -35,7 +35,7 @@ export default function FeaturedDishes() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-6 lg:py-12 overflow-hidden">
+    <section className="relative py-3 lg:py-8 overflow-hidden">
       <Container>
         <motion.div
           ref={ref}

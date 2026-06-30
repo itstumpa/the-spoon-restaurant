@@ -1,11 +1,9 @@
 "use client";
 
-import Footer from "@/components/Footer";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
 import {
-  aboutPageStats,
   aboutTestimonials,
   aboutValuesData,
   galleryImages,
@@ -409,7 +407,7 @@ export default function AboutPage() {
       {/* ═══════════════════════════════════════════════════
           1. PAGE HERO
           ═══════════════════════════════════════════════════ */}
-      <section className="relative h-[60vh] min-h-[420px] sm:h-[65vh] md:h-[70vh] overflow-hidden">
+      <section className="relative h-[60vh] min-h-[420px] sm:h-[65vh] md:h-[70vh] overflow-hidden pt-24 lg:pt-28">
         {/* Background image */}
         <Image
           src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&h=1000&fit=crop&q=80"
@@ -432,8 +430,6 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
             className="max-w-3xl"
           >
-
-
             <span className="inline-block mb-4 rounded-full bg-accent/20 px-5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-accent backdrop-blur-sm border border-accent/20">
               Our Story
             </span>
@@ -476,7 +472,7 @@ export default function AboutPage() {
       {/* ═══════════════════════════════════════════════════
           2. OUR STORY — Bento Gallery + Text
           ═══════════════════════════════════════════════════ */}
-      <section ref={storyRef} className="py-16 lg:py-24 bg-bg">
+      <section ref={storyRef} className="py-6 md:py-12 bg-bg">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left: Bento Image Grid */}
@@ -623,7 +619,7 @@ export default function AboutPage() {
       {/* ═══════════════════════════════════════════════════
           3. OUR JOURNEY — Timeline
           ═══════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-24 bg-bg-surface relative overflow-hidden">
+      <section className="py-6 md:py-8 bg-bg-surface relative overflow-hidden">
         {/* Background accent */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl pointer-events-none"
@@ -707,7 +703,7 @@ export default function AboutPage() {
       {/* ═══════════════════════════════════════════════════
           4. OUR VALUES
           ═══════════════════════════════════════════════════ */}
-      <section ref={valuesRef} className="py-16 lg:py-24 bg-bg">
+      <section ref={valuesRef} className="py-6 lg:py-10 bg-bg">
         <Container>
           <motion.div
             initial="hidden"
@@ -753,7 +749,7 @@ export default function AboutPage() {
           ═══════════════════════════════════════════════════ */}
       <section
         ref={chefsRef}
-        className="py-16 lg:py-24 bg-bg-surface relative overflow-hidden"
+        className="py-6 md:py-10 bg-bg-surface relative overflow-hidden"
       >
         <div
           className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"
@@ -841,82 +837,11 @@ export default function AboutPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          6. RESTAURANT GALLERY
-          ═══════════════════════════════════════════════════ */}
-      <section ref={galleryRef} className="py-16 lg:py-24 bg-bg">
-        <Container>
-          <motion.div
-            initial="hidden"
-            animate={galleryInView ? "visible" : "hidden"}
-            variants={staggerContainer}
-          >
-            <SectionHeading
-              badge="Gallery"
-              title="A Visual Journey"
-              subtitle="Step inside The Spoon — where every corner tells a story of warmth, elegance, and flavor."
-            />
-
-            <motion.div
-              variants={fadeUp}
-              custom={0}
-              className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
-            >
-              {galleryImages.map((img, i) => {
-                const isTall = img.height > img.width;
-                const isLarge = i === 0 || i === 3;
-
-                return (
-                  <motion.button
-                    key={img.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    onClick={() => openLightbox(i)}
-                    className={`relative rounded-xl overflow-hidden group cursor-pointer shadow-md hover:shadow-elevated transition-all duration-500 ${
-                      isTall && isLarge ? "row-span-2" : ""
-                    } ${i === 0 ? "col-span-2 md:col-span-1" : ""}`}
-                    style={{ minHeight: isTall && isLarge ? "320px" : "180px" }}
-                  >
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                        <svg
-                          className="w-6 h-6 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </motion.button>
-                );
-              })}
-            </motion.div>
-          </motion.div>
-        </Container>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════
           7. WHY CHOOSE US
           ═══════════════════════════════════════════════════ */}
       <section
         ref={whyRef}
-        className="py-16 lg:py-24 bg-bg-surface relative overflow-hidden"
+        className="py-6 md:py-14 bg-bg-surface relative overflow-hidden"
       >
         <div
           className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none"
@@ -964,7 +889,6 @@ export default function AboutPage() {
         </Container>
       </section>
 
-     
       {/* ═══════════════════════════════════════════════════
           10. RESERVATION CTA
           ═══════════════════════════════════════════════════ */}
@@ -1029,8 +953,6 @@ export default function AboutPage() {
           </motion.div>
         </Container>
       </section>
-
-      
 
       {/* ═══════════════════════════════════════════════════
           LIGHTBOX

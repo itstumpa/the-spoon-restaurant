@@ -89,7 +89,6 @@ export default function Navbar() {
     setIsMenuOpen((prev) => !prev);
   }, []);
 
-  // Determine if we're on the home page (hero section is dark)
   const isHomePage = pathname === "/";
 
   return (
@@ -103,6 +102,8 @@ export default function Navbar() {
         style={{
           height: isScrolled ? "0" : "auto",
           opacity: isScrolled ? 0 : 1,
+          pointerEvents: isScrolled ? "none" : "auto",
+          overflow: isScrolled ? "hidden" : "visible",
         }}
       >
         <nav
@@ -165,19 +166,19 @@ export default function Navbar() {
         initial="hidden"
         animate="visible"
         className={cn(
-          "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
+          "fixed left-0 right-0 z-40 transition-all duration-300",
           isScrolled
             ? "top-0 bg-bg-dark/60 backdrop-blur-3xl shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
             : isHomePage
               ? "top-10 lg:top-12 bg-transparent"
-              : "top-0 bg-bg-dark/80 backdrop-blur-3xl shadow-[0_1px_3px_rgba(0,0,0,0.3)]",
+              : "top-10 lg:top-12 bg-bg-dark",
         )}
       >
         <nav
           className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 md:py-3"
           aria-label="Main navigation"
         >
-          <div className="flex items-center justify-between h-14 lg:h-16">
+          <div className="flex items-center justify-between h-10 lg:h-12">
             {/* Desktop Nav - Left */}
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link, i) => {
@@ -196,9 +197,9 @@ export default function Navbar() {
                         "relative px-4 py-2 text-lg font-medium transition-colors duration-200",
                         isActive
                           ? "text-primary"
-                          : isScrolled || !isHomePage
-                            ? "text-text-muted hover:text-primary"
-                            : "text-white hover:text-primary-lighter",
+                          : !isScrolled
+                            ? "text-white hover:text-primary-lighter"
+                            : "text-white hover:text-primary",
                       )}
                     >
                       {link.label}

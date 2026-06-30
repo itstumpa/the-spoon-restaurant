@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-12 md:py-16 overflow-hidden">
+    <section className="relative py-6 md:py-10 overflow-hidden">
       {/* Subtle background pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"

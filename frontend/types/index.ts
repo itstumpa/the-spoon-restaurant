@@ -1,11 +1,43 @@
+export type MenuCategory =
+  | "starters"
+  | "breakfast"
+  | "lunch"
+  | "dinner"
+  | "pizza"
+  | "pasta"
+  | "burgers"
+  | "seafood"
+  | "bbq"
+  | "vegetarian"
+  | "desserts"
+  | "drinks";
+
 export interface MenuItem {
   id: string;
   name: string;
   description: string;
   price: string;
   image: string;
-  category: "starters" | "mains" | "desserts" | "drinks";
+  category: MenuCategory;
   tags?: string[];
+  /** Preparation time string, e.g. "15-20 min" */
+  prepTime?: string;
+  /** Spice level from 1 (mild) to 3 (hot) */
+  spiceLevel?: 1 | 2 | 3;
+  /** Whether the dish is vegetarian-friendly */
+  isVegetarian: boolean;
+  /** Customer rating out of 5 */
+  rating: number;
+  /** Chef's personal selection */
+  isChefsChoice?: boolean;
+  /** Most popular dishes */
+  isPopular?: boolean;
+  /** Restaurant signature dish */
+  isSignature?: boolean;
+  /** Gluten-free option */
+  isGlutenFree?: boolean;
+  /** Newly added to menu */
+  isNew?: boolean;
 }
 
 export interface StatItem {
@@ -40,6 +72,37 @@ export interface WhyDinePoint {
   title: string;
   description: string;
   icon: string;
+}
+
+export type BlogCategory =
+  | "all"
+  | "news"
+  | "recipes"
+  | "chef-stories"
+  | "events"
+  | "seasonal"
+  | "tips"
+  | "healthy";
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  category: BlogCategory;
+  categoryLabel: string;
+  author: {
+    name: string;
+    avatar: string;
+    role: string;
+  };
+  publishDate: string;
+  readingTime: string;
+  isFeatured: boolean;
+  isPopular: boolean;
+  tags: string[];
 }
 
 export interface ValueItem {

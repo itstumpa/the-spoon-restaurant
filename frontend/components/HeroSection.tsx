@@ -51,7 +51,7 @@ export default function HeroSection() {
   return (
     <motion.section
       style={{ opacity: heroOpacity, scale: heroScale }}
-      className="relative min-h-screen flex items-center overflow-hidden bg-bg-dark pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden bg-bg-dark pt-16 lg:pt-20"
     >
       {/* ---- Premium Background Effects ---- */}
       {/* Main green radial glow */}
@@ -225,8 +225,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.5, duration: 0.6 }}
         className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
-      >
-      </motion.div>
+      ></motion.div>
     </motion.section>
   );
 }

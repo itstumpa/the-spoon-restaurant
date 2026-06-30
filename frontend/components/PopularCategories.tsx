@@ -102,7 +102,7 @@ export default function PopularCategories() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-6 lg:py-12 overflow-hidden bg-bg-surface">
+    <section className="relative py-6 lg:py-10 overflow-hidden bg-bg-surface">
       {/* Subtle background gradient */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"
