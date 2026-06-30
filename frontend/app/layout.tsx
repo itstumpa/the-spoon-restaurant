@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
-import { Poppins, Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
-import "./globals.css";
+import Navbar from "@/components/Navbar";
+import PageTransition from "@/components/PageTransition";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Inter, Poppins } from "next/font/google";
+import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,13 +22,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "The Spoon — Simple Ingredients. Soulful Flavors.",
+  title: "The Spoon — Where Mediterranean Meets the Table",
   description:
-    "Experience warm American hospitality at The Spoon. Fresh local ingredients, homestyle cooking, and a cozy atmosphere in Austin, Texas.",
+    "Farm-fresh Mediterranean cuisine in Austin, TX. Inspired by sun-drenched coasts, crafted with passion, and served with warmth.",
   openGraph: {
-    title: "The Spoon — Simple Ingredients. Soulful Flavors.",
+    title: "The Spoon — Where Mediterranean Meets the Table",
     description:
-      "Experience warm American hospitality at The Spoon. Fresh local ingredients, homestyle cooking, and a cozy atmosphere in Austin, Texas.",
+      "Farm-fresh Mediterranean cuisine in Austin, TX. Inspired by sun-drenched coasts, crafted with passion, and served with warmth.",
     type: "website",
     locale: "en_US",
     siteName: "The Spoon",
@@ -42,8 +44,11 @@ export default function RootLayout({
     <html lang="en" className={cn(poppins.variable, inter.variable)}>
       <body className="font-body antialiased flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

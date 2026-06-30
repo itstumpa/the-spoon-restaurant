@@ -20,6 +20,7 @@ export interface Testimonial {
   name: string;
   text: string;
   rating: number;
+  avatar?: string;
 }
 
 export interface TeamMember {
@@ -27,6 +28,7 @@ export interface TeamMember {
   name: string;
   role: string;
   image: string;
+  bio?: string;
 }
 
 export interface WhyDinePoint {

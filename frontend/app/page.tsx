@@ -1,6 +1,7 @@
-import HeroSection from "@/components/HeroSection";
+import AboutPreview from "@/components/AboutPreview";
 import FeaturedDishes from "@/components/FeaturedDishes";
-import WhyDineWithUs from "@/components/WhyDineWithUs";
+import HeroSection from "@/components/HeroSection";
+import MenuPreview from "@/components/MenuPreview";
 import Testimonials from "@/components/Testimonials";
 
 export default function HomePage() {
@@ -8,9 +9,9 @@ export default function HomePage() {
     <>
       <HeroSection />
       <FeaturedDishes />
-      <WhyDineWithUs />
+      <MenuPreview />
+      <AboutPreview />
       <Testimonials />
     </>
   );
 }
-

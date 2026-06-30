@@ -22,7 +22,7 @@ export function SectionHeading({
       className={cn(
         "max-w-3xl",
         align === "center" && "mx-auto text-center",
-        className
+        className,
       )}
       {...props}
     >
@@ -30,9 +30,7 @@ export function SectionHeading({
         <span
           className={cn(
             "mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em]",
-            light
-              ? "bg-white/10 text-accent"
-              : "bg-primary/10 text-primary"
+            light ? "bg-white/10 text-accent" : "bg-primary/10 text-primary",
           )}
         >
           {badge}
@@ -41,7 +39,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "font-heading text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight",
-          light ? "text-white" : "text-text"
+          light ? "text-white" : "text-text",
         )}
       >
         {title}
@@ -50,7 +48,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-4 text-base leading-relaxed md:text-lg",
-            light ? "text-white/70" : "text-text-muted"
+            light ? "text-white/70" : "text-text-muted",
           )}
         >
           {subtitle}

@@ -10,6 +10,7 @@ const config: Config = {
       colors: {
         bg: "var(--color-bg)",
         "bg-muted": "var(--color-bg-muted)",
+        "bg-surface": "var(--color-bg-surface)",
         "bg-dark": "var(--color-bg-dark)",
         primary: "var(--color-primary)",
         "primary-light": "var(--color-primary-light)",
