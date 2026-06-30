@@ -4,21 +4,62 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
+import {
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Mail,
+  MapPin,
+  Phone,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { useRef, useState } from "react";
-import { Calendar, Clock, Users, MapPin, Phone, Mail, CheckCircle2, Sparkles } from "lucide-react";
 
 const benefits = [
-  { icon: CheckCircle2, title: "Instant Confirmation", description: "Real-time availability with immediate booking confirmation via email and SMS." },
-  { icon: Sparkles, title: "Special Requests", description: "Dietary needs, seating preferences, celebrations — we accommodate it all." },
-  { icon: Users, title: "Flexible Changes", description: "Modify or cancel up to 2 hours before your reservation at no charge." },
-  { icon: Calendar, title: "Book 90 Days Ahead", description: "Plan your special occasions well in advance with our extended booking window." },
+  {
+    icon: CheckCircle2,
+    title: "Instant Confirmation",
+    description:
+      "Real-time availability with immediate booking confirmation via email and SMS.",
+  },
+  {
+    icon: Sparkles,
+    title: "Special Requests",
+    description:
+      "Dietary needs, seating preferences, celebrations — we accommodate it all.",
+  },
+  {
+    icon: Users,
+    title: "Flexible Changes",
+    description:
+      "Modify or cancel up to 2 hours before your reservation at no charge.",
+  },
+  {
+    icon: Calendar,
+    title: "Book 90 Days Ahead",
+    description:
+      "Plan your special occasions well in advance with our extended booking window.",
+  },
 ];
 
 const timeSlots = [
-  "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM",
-  "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM",
-  "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM"
+  "11:00 AM",
+  "11:30 AM",
+  "12:00 PM",
+  "12:30 PM",
+  "1:00 PM",
+  "1:30 PM",
+  "5:00 PM",
+  "5:30 PM",
+  "6:00 PM",
+  "6:30 PM",
+  "7:00 PM",
+  "7:30 PM",
+  "8:00 PM",
+  "8:30 PM",
+  "9:00 PM",
+  "9:30 PM",
 ];
 
 const containerVariants = {
@@ -59,8 +100,12 @@ export default function ReservationSection() {
     setTimeout(() => setSubmitted(false), 5000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -91,7 +136,11 @@ export default function ReservationSection() {
 
           <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Left: Benefits & Info */}
-            <motion.div variants={itemVariants} custom={0} className="space-y-8">
+            <motion.div
+              variants={itemVariants}
+              custom={0}
+              className="space-y-8"
+            >
               <div className="space-y-6">
                 {benefits.map((benefit, i) => (
                   <motion.div
@@ -104,8 +153,12 @@ export default function ReservationSection() {
                       <benefit.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
                     <div>
-                      <h4 className="font-heading font-semibold text-white">{benefit.title}</h4>
-                      <p className="mt-1 text-white/60 font-body text-sm">{benefit.description}</p>
+                      <h4 className="font-heading font-semibold text-white">
+                        {benefit.title}
+                      </h4>
+                      <p className="mt-1 text-white/60 font-body text-sm">
+                        {benefit.description}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -113,16 +166,27 @@ export default function ReservationSection() {
 
               {/* Contact Info */}
               <div className="pt-6 border-t border-white/10 space-y-4">
-                <h4 className="font-heading font-semibold text-white">Questions? Contact Us</h4>
+                <h4 className="font-heading font-semibold text-white">
+                  Questions? Contact Us
+                </h4>
                 <div className="space-y-3">
                   {[
-                    { icon: MapPin, text: "123 Maple Street, Austin, TX 78701" },
+                    {
+                      icon: MapPin,
+                      text: "123 Maple Street, Austin, TX 78701",
+                    },
                     { icon: Phone, text: "(512) 555-0187" },
                     { icon: Mail, text: "reservations@thespoon.com" },
                     { icon: Clock, text: "Mon–Sun: 11:00 AM – 10:00 PM" },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3 text-white/70 font-body text-sm">
-                      <item.icon className="h-5 w-5 text-accent shrink-0" aria-hidden="true" />
+                    <div
+                      key={i}
+                      className="flex items-center gap-3 text-white/70 font-body text-sm"
+                    >
+                      <item.icon
+                        className="h-5 w-5 text-accent shrink-0"
+                        aria-hidden="true"
+                      />
                       <span>{item.text}</span>
                     </div>
                   ))}
@@ -134,29 +198,55 @@ export default function ReservationSection() {
             <motion.div variants={itemVariants} custom={5}>
               <div className="relative bg-white rounded-3xl p-6 sm:p-8 shadow-elevated">
                 {/* Decorative top accent */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-b-full" aria-hidden="true" />
+                <div
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-b-full"
+                  aria-hidden="true"
+                />
 
                 {submitted ? (
                   <div className="text-center py-12">
                     <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
-                      <CheckCircle2 className="h-8 w-8 text-primary" aria-hidden="true" />
+                      <CheckCircle2
+                        className="h-8 w-8 text-primary"
+                        aria-hidden="true"
+                      />
                     </div>
-                    <h3 className="text-2xl font-heading font-bold text-text mb-2">Reservation Confirmed!</h3>
-                    <p className="text-text-muted font-body">We've sent a confirmation to your email. We look forward to serving you!</p>
-                    <Button variant="outline" size="lg" className="mt-6" onClick={() => setSubmitted(false)}>
+                    <h3 className="text-2xl font-heading font-bold text-text mb-2">
+                      Reservation Confirmed!
+                    </h3>
+                    <p className="text-text-muted font-body">
+                      We've sent a confirmation to your email. We look forward
+                      to serving you!
+                    </p>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="mt-6"
+                      onClick={() => setSubmitted(false)}
+                    >
                       Book Another Table
                     </Button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-5"
+                    noValidate
+                  >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Date */}
                       <div>
-                        <label htmlFor="date" className="block text-sm font-medium text-text mb-1.5">
+                        <label
+                          htmlFor="date"
+                          className="block text-sm font-medium text-text mb-1.5"
+                        >
                           Date <span className="text-destructive">*</span>
                         </label>
                         <div className="relative">
-                          <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted" aria-hidden="true" />
+                          <Calendar
+                            className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
+                            aria-hidden="true"
+                          />
                           <input
                             type="date"
                             id="date"
@@ -164,8 +254,12 @@ export default function ReservationSection() {
                             value={formData.date}
                             onChange={handleChange}
                             required
-                            min={new Date().toISOString().split('T')[0]}
-                            max={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                            min={new Date().toISOString().split("T")[0]}
+                            max={
+                              new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
+                                .toISOString()
+                                .split("T")[0]
+                            }
                             className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
                           />
                         </div>
@@ -173,11 +267,17 @@ export default function ReservationSection() {
 
                       {/* Time */}
                       <div>
-                        <label htmlFor="time" className="block text-sm font-medium text-text mb-1.5">
+                        <label
+                          htmlFor="time"
+                          className="block text-sm font-medium text-text mb-1.5"
+                        >
                           Time <span className="text-destructive">*</span>
                         </label>
                         <div className="relative">
-                          <Clock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted" aria-hidden="true" />
+                          <Clock
+                            className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
+                            aria-hidden="true"
+                          />
                           <select
                             id="time"
                             name="time"
@@ -188,11 +288,24 @@ export default function ReservationSection() {
                           >
                             <option value="">Select time</option>
                             {timeSlots.map((slot) => (
-                              <option key={slot} value={slot}>{slot}</option>
+                              <option key={slot} value={slot}>
+                                {slot}
+                              </option>
                             ))}
                           </select>
-                          <svg className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          <svg
+                            className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         </div>
                       </div>
@@ -200,11 +313,17 @@ export default function ReservationSection() {
 
                     {/* Guests */}
                     <div>
-                      <label htmlFor="guests" className="block text-sm font-medium text-text mb-1.5">
+                      <label
+                        htmlFor="guests"
+                        className="block text-sm font-medium text-text mb-1.5"
+                      >
                         Guests <span className="text-destructive">*</span>
                       </label>
                       <div className="relative">
-                        <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted" aria-hidden="true" />
+                        <Users
+                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
+                          aria-hidden="true"
+                        />
                         <select
                           id="guests"
                           name="guests"
@@ -213,24 +332,45 @@ export default function ReservationSection() {
                           required
                           className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-text appearance-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all duration-200"
                         >
-                          {Array.from({ length: 12 }, (_, i) => i + 1).map((num) => (
-                            <option key={num} value={num.toString()}>{num} {num === 1 ? 'Guest' : 'Guests'}</option>
-                          ))}
+                          {Array.from({ length: 12 }, (_, i) => i + 1).map(
+                            (num) => (
+                              <option key={num} value={num.toString()}>
+                                {num} {num === 1 ? "Guest" : "Guests"}
+                              </option>
+                            ),
+                          )}
                           <option value="13">13+ (Private Dining)</option>
                         </select>
-                        <svg className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <svg
+                          className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </div>
                     </div>
 
                     {/* Occasion */}
                     <div>
-                      <label htmlFor="occasion" className="block text-sm font-medium text-text mb-1.5">
+                      <label
+                        htmlFor="occasion"
+                        className="block text-sm font-medium text-text mb-1.5"
+                      >
                         Occasion (Optional)
                       </label>
                       <div className="relative">
-                        <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted" aria-hidden="true" />
+                        <Sparkles
+                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
+                          aria-hidden="true"
+                        />
                         <select
                           id="occasion"
                           name="occasion"
@@ -246,15 +386,29 @@ export default function ReservationSection() {
                           <option value="family">Family Gathering</option>
                           <option value="other">Other</option>
                         </select>
-                        <svg className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <svg
+                          className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted pointer-events-none"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </div>
                     </div>
 
                     {/* Name */}
                     <div className="sm:col-span-2">
-                      <label htmlFor="name" className="block text-sm font-medium text-text mb-1.5">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-text mb-1.5"
+                      >
                         Full Name <span className="text-destructive">*</span>
                       </label>
                       <div className="relative">
@@ -273,11 +427,17 @@ export default function ReservationSection() {
 
                     {/* Email */}
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-text mb-1.5">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-text mb-1.5"
+                      >
                         Email <span className="text-destructive">*</span>
                       </label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted" aria-hidden="true" />
+                        <Mail
+                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
+                          aria-hidden="true"
+                        />
                         <input
                           type="email"
                           id="email"
@@ -293,11 +453,17 @@ export default function ReservationSection() {
 
                     {/* Phone */}
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-text mb-1.5">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-text mb-1.5"
+                      >
                         Phone <span className="text-destructive">*</span>
                       </label>
                       <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted" aria-hidden="true" />
+                        <Phone
+                          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted"
+                          aria-hidden="true"
+                        />
                         <input
                           type="tel"
                           id="phone"
@@ -313,7 +479,10 @@ export default function ReservationSection() {
 
                     {/* Special Requests */}
                     <div className="sm:col-span-2">
-                      <label htmlFor="requests" className="block text-sm font-medium text-text mb-1.5">
+                      <label
+                        htmlFor="requests"
+                        className="block text-sm font-medium text-text mb-1.5"
+                      >
                         Special Requests
                       </label>
                       <textarea
@@ -329,11 +498,29 @@ export default function ReservationSection() {
 
                     {/* Submit */}
                     <div className="pt-2">
-                      <Button type="submit" variant="default" size="lg" className="w-full shadow-elevated">
-                        {submitted ? 'Confirming...' : 'Reserve Table'}
+                      <Button
+                        type="submit"
+                        variant="default"
+                        size="lg"
+                        className="w-full shadow-elevated"
+                      >
+                        {submitted ? "Confirming..." : "Reserve Table"}
                       </Button>
                       <p className="mt-3 text-center text-sm text-text-muted">
-                        By booking, you agree to our <a href="/terms" className="text-primary hover:underline">Terms</a> & <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
+                        By booking, you agree to our{" "}
+                        <a
+                          href="/terms"
+                          className="text-primary hover:underline"
+                        >
+                          Terms
+                        </a>{" "}
+                        &{" "}
+                        <a
+                          href="/privacy"
+                          className="text-primary hover:underline"
+                        >
+                          Privacy Policy
+                        </a>
                       </p>
                     </div>
                   </form>

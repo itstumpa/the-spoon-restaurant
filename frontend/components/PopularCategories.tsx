@@ -3,9 +3,17 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { motion, useInView } from "framer-motion";
+import {
+  Beef,
+  Burger,
+  Fish,
+  IceCream,
+  Pizza,
+  Utensils,
+  Wine,
+} from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-import { Utensils, Burger, Pizza, Fish, Beef, IceCream, Coffee, Wine } from "lucide-react";
 
 const categories = [
   {
@@ -13,7 +21,8 @@ const categories = [
     name: "Pizza",
     count: "12 Varieties",
     icon: Pizza,
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=400&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=400&fit=crop&q=80",
     color: "from-orange-500 to-amber-600",
   },
   {
@@ -21,7 +30,8 @@ const categories = [
     name: "Burger",
     count: "8 Varieties",
     icon: Burger,
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop&q=80",
     color: "from-red-500 to-rose-600",
   },
   {
@@ -29,7 +39,8 @@ const categories = [
     name: "Pasta",
     count: "10 Varieties",
     icon: Utensils,
-    image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400&h=400&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400&h=400&fit=crop&q=80",
     color: "from-amber-500 to-orange-600",
   },
   {
@@ -37,7 +48,8 @@ const categories = [
     name: "Seafood",
     count: "6 Varieties",
     icon: Fish,
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=400&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=400&fit=crop&q=80",
     color: "from-blue-500 to-cyan-600",
   },
   {
@@ -45,7 +57,8 @@ const categories = [
     name: "Steak",
     count: "5 Cuts",
     icon: Beef,
-    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=400&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=400&fit=crop&q=80",
     color: "from-stone-600 to-stone-800",
   },
   {
@@ -53,7 +66,8 @@ const categories = [
     name: "Dessert",
     count: "7 Varieties",
     icon: IceCream,
-    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=400&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=400&fit=crop&q=80",
     color: "from-pink-500 to-rose-600",
   },
   {
@@ -61,7 +75,8 @@ const categories = [
     name: "Drinks",
     count: "15+ Options",
     icon: Wine,
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=400&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=400&fit=crop&q=80",
     color: "from-emerald-500 to-teal-600",
   },
 ];
@@ -155,8 +170,19 @@ export default function PopularCategories() {
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm text-text font-semibold text-sm">
                     Explore
-                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
                     </svg>
                   </span>
                 </div>

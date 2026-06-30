@@ -4,19 +4,21 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
+import { Clock, Flame, Leaf, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { Clock, Flame, Leaf, Sparkles } from "lucide-react";
 
 const specials = [
   {
     id: "sp1",
     name: "Mediterranean Sea Bass",
-    description: "Whole branzino grilled with lemon, oregano, and extra virgin olive oil. Served with roasted seasonal vegetables and herb quinoa.",
+    description:
+      "Whole branzino grilled with lemon, oregano, and extra virgin olive oil. Served with roasted seasonal vegetables and herb quinoa.",
     price: "$34.00",
     originalPrice: "$38.00",
-    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&h=600&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&h=600&fit=crop&q=80",
     badge: "Chef's Special",
     badgeColor: "bg-accent text-accent-foreground",
     tags: ["GF", "DF"],
@@ -25,10 +27,12 @@ const specials = [
   {
     id: "sp2",
     name: "Lamb Tagine",
-    description: "Slow-braised Moroccan lamb with apricots, almonds, and ras el hanout. Served with saffron couscous and preserved lemon yogurt.",
+    description:
+      "Slow-braised Moroccan lamb with apricots, almonds, and ras el hanout. Served with saffron couscous and preserved lemon yogurt.",
     price: "$32.00",
     originalPrice: "$36.00",
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop&q=80",
     badge: "Limited Time",
     badgeColor: "bg-primary text-primary-foreground",
     tags: ["DF"],
@@ -37,10 +41,12 @@ const specials = [
   {
     id: "sp3",
     name: "Vegetarian Moussaka",
-    description: "Layers of eggplant, zucchini, potatoes, and rich béchamel sauce. Baked to golden perfection with a side of Greek salad.",
+    description:
+      "Layers of eggplant, zucchini, potatoes, and rich béchamel sauce. Baked to golden perfection with a side of Greek salad.",
     price: "$24.00",
     originalPrice: "$28.00",
-    image: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&h=600&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&h=600&fit=crop&q=80",
     badge: "Vegetarian",
     badgeColor: "bg-emerald-500 text-white",
     tags: ["V", "GF"],
@@ -119,7 +125,9 @@ export default function TodaysSpecial() {
                   />
                   {/* Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${special.badgeColor}`}>
+                    <span
+                      className={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${special.badgeColor}`}
+                    >
                       {special.badge}
                     </span>
                   </div>
@@ -178,10 +186,25 @@ export default function TodaysSpecial() {
             className="mt-12 text-center"
           >
             <Link href="/menu">
-              <Button variant="outline-accent" size="lg" className="border-white/20 text-white hover:bg-white/10">
+              <Button
+                variant="outline-accent"
+                size="lg"
+                className="border-white/20 text-white hover:bg-white/10"
+              >
                 View Full Menu
-                <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <svg
+                  className="ml-2 h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </Button>
             </Link>

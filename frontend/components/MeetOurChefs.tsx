@@ -2,11 +2,10 @@
 
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { teamMembers } from "@/lib/data";
 import { motion, useInView } from "framer-motion";
+import { Award, Heart, Leaf, Star, UtensilsCrossed } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-import { Award, Star, Heart, UtensilsCrossed, Leaf } from "lucide-react";
 
 const chefDetails = [
   {
@@ -15,9 +14,14 @@ const chefDetails = [
     role: "Executive Chef",
     experience: "30+ Years",
     specialty: "Mediterranean & Italian",
-    awards: ["Michelin Star 2018", "James Beard Nominee 2021", "Best Chef Austin 2022"],
+    awards: [
+      "Michelin Star 2018",
+      "James Beard Nominee 2021",
+      "Best Chef Austin 2022",
+    ],
     bio: "Born in Tuscany, Chef Marco brings three decades of culinary mastery. Trained under Michelin-starred chefs across Europe before bringing his expertise to Austin.",
-    image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&h=600&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&h=600&fit=crop&q=80",
     icons: [Award, Star, Heart],
   },
   {
@@ -28,7 +32,8 @@ const chefDetails = [
     specialty: "Seafood & Modern European",
     awards: ["Rising Star Chef 2020", "Sustainable Seafood Champion 2023"],
     bio: "Swedish-born with a passion for sustainable seafood. Chef Sofia champions zero-waste cooking and sources exclusively from responsible fisheries.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop&q=80",
     icons: [Leaf, Heart, UtensilsCrossed],
   },
   {
@@ -39,7 +44,8 @@ const chefDetails = [
     specialty: "French Patisserie & Desserts",
     awards: ["World Pastry Cup 2019", "Best Dessert Menu Texas 2023"],
     bio: "Classically trained in Paris, Chef James creates desserts that are both visually stunning and deeply flavorful. His chocolate work is renowned statewide.",
-    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&h=600&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&h=600&fit=crop&q=80",
     icons: [Award, Star, Heart],
   },
 ];
@@ -123,7 +129,9 @@ export default function MeetOurChefs() {
                     <h3 className="text-xl font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">
                       {chef.name}
                     </h3>
-                    <p className="mt-1 text-primary font-medium text-sm">{chef.role}</p>
+                    <p className="mt-1 text-primary font-medium text-sm">
+                      {chef.role}
+                    </p>
                   </div>
 
                   <p className="text-text-muted font-body text-sm leading-relaxed">
@@ -133,13 +141,22 @@ export default function MeetOurChefs() {
                   {/* Awards */}
                   <div className="pt-4 border-t border-border">
                     <div className="flex items-center gap-2 text-text-muted text-xs font-body mb-2">
-                      <Award className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+                      <Award
+                        className="h-3.5 w-3.5 text-accent"
+                        aria-hidden="true"
+                      />
                       <span>Accolades</span>
                     </div>
                     <ul className="space-y-1.5">
                       {chef.awards.map((award, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-sm text-text-muted font-body">
-                          <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+                        <li
+                          key={idx}
+                          className="flex items-center gap-2 text-sm text-text-muted font-body"
+                        >
+                          <span
+                            className="h-1.5 w-1.5 rounded-full bg-primary"
+                            aria-hidden="true"
+                          />
                           {award}
                         </li>
                       ))}

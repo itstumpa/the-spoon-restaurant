@@ -85,7 +85,8 @@ export default function PopularDishes() {
                           key={tag}
                           className={cn(
                             "inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border",
-                            tagColors[tag] || "bg-white/80 text-text border-white/20",
+                            tagColors[tag] ||
+                              "bg-white/80 text-text border-white/20",
                           )}
                         >
                           {tag}
@@ -114,15 +115,22 @@ export default function PopularDishes() {
                       </p>
                     </div>
                     <div className="flex items-center gap-1 shrink-0">
-                      <Star className="h-4 w-4 fill-accent text-accent" aria-hidden="true" />
-                      <span className="text-sm font-semibold text-text">4.9</span>
+                      <Star
+                        className="h-4 w-4 fill-accent text-accent"
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm font-semibold text-text">
+                        4.9
+                      </span>
                     </div>
                   </div>
                   <div className="mt-4 flex items-center justify-between">
                     <span className="text-primary font-heading font-bold text-lg sm:text-xl">
                       {dish.price}
                     </span>
-                    <span className="text-text-muted text-sm font-body">Per serving</span>
+                    <span className="text-text-muted text-sm font-body">
+                      Per serving
+                    </span>
                   </div>
                 </div>
               </motion.article>

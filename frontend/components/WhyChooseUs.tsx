@@ -3,39 +3,45 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { motion, useInView } from "framer-motion";
+import { Award, CheckCircle2, Heart, Leaf, Truck, Users } from "lucide-react";
 import { useRef } from "react";
-import { CheckCircle2, Leaf, Heart, Truck, Award, Users } from "lucide-react";
 
 const features = [
   {
     icon: Leaf,
     title: "Farm-Fresh Ingredients",
-    description: "Sourced daily from local farms within 50 miles, ensuring peak-season flavor and maximum freshness in every dish.",
+    description:
+      "Sourced daily from local farms within 50 miles, ensuring peak-season flavor and maximum freshness in every dish.",
   },
   {
     icon: Heart,
     title: "Crafted with Passion",
-    description: "Every recipe is developed with generations of culinary expertise, blending Mediterranean tradition with modern technique.",
+    description:
+      "Every recipe is developed with generations of culinary expertise, blending Mediterranean tradition with modern technique.",
   },
   {
     icon: Award,
     title: "Award-Winning Chefs",
-    description: "Our kitchen is led by chefs with Michelin-star experience and international culinary competition victories.",
+    description:
+      "Our kitchen is led by chefs with Michelin-star experience and international culinary competition victories.",
   },
   {
     icon: Truck,
     title: "Sustainable Practices",
-    description: "Zero-waste kitchen philosophy, compostable packaging, and partnerships with local organic farms.",
+    description:
+      "Zero-waste kitchen philosophy, compostable packaging, and partnerships with local organic farms.",
   },
   {
     icon: Users,
     title: "Warm Hospitality",
-    description: "From the moment you arrive, our team treats you like family — attentive service without pretension.",
+    description:
+      "From the moment you arrive, our team treats you like family — attentive service without pretension.",
   },
   {
     icon: CheckCircle2,
     title: "Dietary Excellence",
-    description: "Extensive gluten-free, vegetarian, vegan, and allergen-friendly options crafted with the same care as our signature dishes.",
+    description:
+      "Extensive gluten-free, vegetarian, vegan, and allergen-friendly options crafted with the same care as our signature dishes.",
   },
 ];
 
