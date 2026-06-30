@@ -85,7 +85,7 @@ export default function BestDeals() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
+    <section className="relative py-16 lg:py-20 overflow-hidden">
       <Container>
         <motion.div
           ref={ref}
@@ -108,7 +108,7 @@ export default function BestDeals() {
                 className="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 overflow-hidden">
                   <Image
                     src={deal.image}
                     alt={deal.title}
@@ -141,7 +141,7 @@ export default function BestDeals() {
                 <div className="p-6 space-y-4">
                   <div className="flex items-center gap-2 text-primary font-semibold text-sm">
                     <deal.icon className="h-4 w-4" aria-hidden="true" />
-                    <span>{deal.title}</span>
+                    <span className="sr-only">{deal.title}</span>
                   </div>
 
                   <h3 className="text-xl font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">

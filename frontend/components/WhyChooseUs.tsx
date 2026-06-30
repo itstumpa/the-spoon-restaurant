@@ -66,7 +66,7 @@ export default function WhyChooseUs() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
+    <section className="relative py-16 lg:py-20 overflow-hidden">
       {/* Subtle background pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"
@@ -97,12 +97,12 @@ export default function WhyChooseUs() {
                 key={feature.title}
                 variants={itemVariants}
                 custom={i}
-                className="group relative p-6 lg:p-8 bg-white rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500"
+                className="group relative p-5 lg:p-6 bg-white rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500"
               >
                 {/* Icon Wrapper */}
-                <div className="relative mb-5">
-                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <feature.icon className="h-7 w-7" aria-hidden="true" />
+                <div className="relative mb-4">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <feature.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
                   {/* Decorative accent */}
                   <div
@@ -111,10 +111,10 @@ export default function WhyChooseUs() {
                   />
                 </div>
 
-                <h3 className="text-xl font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-lg font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="mt-3 text-text-muted font-body leading-relaxed">
+                <p className="mt-2 text-text-muted font-body text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </motion.article>

@@ -76,7 +76,7 @@ export default function AboutPreview() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden bg-bg-dark">
+    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-dark">
       {/* Background accent */}
       <div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(58,90,64,0.08),transparent_60%)]"

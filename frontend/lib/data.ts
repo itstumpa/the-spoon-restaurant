@@ -230,6 +230,13 @@ export const teamMembers: TeamMember[] = [
     image:
       "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=400&fit=crop&q=80",
     bio: "30 years of culinary mastery across Europe and America.",
+    experience: "30+ years",
+    specialty: "Mediterranean & European Cuisine",
+    awards: [
+      "James Beard Award 2018",
+      "Michelin Star 2015-2020",
+      "Best Chef Austin 2022",
+    ],
   },
   {
     id: "tm2",
@@ -238,6 +245,12 @@ export const teamMembers: TeamMember[] = [
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80",
     bio: "Creating warm dining experiences for over a decade.",
+    experience: "12+ years",
+    specialty: "Hospitality Management & Guest Relations",
+    awards: [
+      "Restaurant Manager of the Year 2021",
+      "Top 50 Hospitality Leaders 2023",
+    ],
   },
   {
     id: "tm3",
@@ -246,6 +259,9 @@ export const teamMembers: TeamMember[] = [
     image:
       "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&q=80",
     bio: "Specializing in farm-to-table seasonal cuisine.",
+    experience: "8+ years",
+    specialty: "Farm-to-Table & Seasonal Cuisine",
+    awards: ["Rising Star Chef 2022", "Sustainable Cuisine Award 2023"],
   },
 ];
 

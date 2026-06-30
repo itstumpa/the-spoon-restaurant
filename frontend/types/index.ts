@@ -29,6 +29,9 @@ export interface TeamMember {
   role: string;
   image: string;
   bio?: string;
+  experience?: string;
+  specialty?: string;
+  awards?: string[];
 }
 
 export interface WhyDinePoint {

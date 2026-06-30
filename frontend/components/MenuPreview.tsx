@@ -41,7 +41,7 @@ function DishCard({ dish, index }: { dish: MenuItem; index: number }) {
       layout
       className="group bg-bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500"
     >
-      <div className="relative h-44 sm:h-52 overflow-hidden">
+      <div className="relative h-36 sm:h-40 overflow-hidden">
         <Image
           src={dish.image}
           alt={dish.name}
@@ -79,7 +79,7 @@ export default function MenuPreview() {
   );
 
   return (
-    <section className="relative py-20 lg:py-28 bg-surface overflow-hidden">
+    <section className="relative py-16 lg:py-20 bg-surface overflow-hidden">
       <Container>
         <motion.div
           ref={ref}
@@ -130,7 +130,7 @@ export default function MenuPreview() {
           </div>
 
           {/* Dish Grid */}
-          <div className="mt-10 min-h-[300px]">
+          <div className="mt-8 min-h-[300px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -151,7 +151,7 @@ export default function MenuPreview() {
           <motion.div
             variants={dishVariants}
             custom={0}
-            className="mt-12 text-center"
+            className="mt-10 text-center"
           >
             <Link href="/menu">
               <Button variant="default" size="lg">

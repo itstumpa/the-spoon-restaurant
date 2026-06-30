@@ -81,7 +81,7 @@ export default function TodaysSpecial() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden bg-bg-dark">
+    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-dark">
       {/* Background decorative elements */}
       <div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(58,90,64,0.12),transparent_60%)]"
@@ -106,7 +106,7 @@ export default function TodaysSpecial() {
             light
           />
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {specials.map((special, i) => (
               <motion.article
                 key={special.id}
@@ -115,7 +115,7 @@ export default function TodaysSpecial() {
                 className="group relative bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden hover:border-primary/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500"
               >
                 {/* Image */}
-                <div className="relative h-56 sm:h-64 overflow-hidden">
+                <div className="relative h-44 sm:h-48 overflow-hidden">
                   <Image
                     src={special.image}
                     alt={special.name}
@@ -139,7 +139,7 @@ export default function TodaysSpecial() {
                 </div>
 
                 {/* Content */}
-                <div className="p-5 sm:p-6">
+                <div className="p-4 sm:p-5">
                   {/* Tags */}
                   {special.tags && special.tags.length > 0 && (
                     <div className="mb-3 flex flex-wrap gap-2">
@@ -157,7 +157,7 @@ export default function TodaysSpecial() {
                   <h3 className="text-xl font-heading font-bold text-white group-hover:text-primary-lighter transition-colors duration-300">
                     {special.name}
                   </h3>
-                  <p className="mt-2 text-white/60 font-body text-sm leading-relaxed">
+                  <p className="mt-2 text-white/70 font-body text-sm leading-relaxed">
                     {special.description}
                   </p>
 

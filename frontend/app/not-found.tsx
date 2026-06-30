@@ -114,7 +114,7 @@ export default function NotFound() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.5 }}
-            className="mt-12 text-white/30 font-body text-xs tracking-wider uppercase"
+            className="mt-12 text-white/50 font-body text-xs tracking-wider uppercase"
           >
             The Spoon — Simple Ingredients. Soulful Flavors.
           </motion.p>

@@ -35,7 +35,7 @@ export default function FeaturedDishes() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
+    <section className="relative py-16 lg:py-20 overflow-hidden">
       <Container>
         <motion.div
           ref={ref}
@@ -52,7 +52,7 @@ export default function FeaturedDishes() {
             subtitle="Our most beloved dishes, crafted with passion and the finest Mediterranean ingredients."
           />
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {featuredDishes.map((dish, i) => (
               <motion.article
                 key={dish.id}
@@ -61,7 +61,7 @@ export default function FeaturedDishes() {
                 className="group bg-bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
               >
                 {/* Image */}
-                <div className="relative h-56 sm:h-64 overflow-hidden">
+                <div className="relative h-44 sm:h-48 overflow-hidden">
                   <Image
                     src={dish.image}
                     alt={dish.name}
@@ -100,7 +100,7 @@ export default function FeaturedDishes() {
                 </div>
 
                 {/* Content */}
-                <div className="p-5 sm:p-6">
+                <div className="p-4 sm:p-5">
                   <h3 className="text-xl sm:text-2xl font-heading font-bold text-text group-hover:text-primary transition-colors duration-300">
                     {dish.name}
                   </h3>

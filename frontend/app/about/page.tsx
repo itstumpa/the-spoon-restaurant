@@ -72,7 +72,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story */}
-      <section ref={storyRef} className="py-20 lg:py-28">
+      <section ref={storyRef} className="py-16 lg:py-20">
         <Container>
           <motion.div
             initial="hidden"
@@ -166,7 +166,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values */}
-      <section ref={valuesRef} className="py-20 lg:py-28 bg-surface">
+      <section ref={valuesRef} className="py-16 lg:py-20 bg-bg-surface">
         <Container>
           <motion.div
             initial="hidden"
@@ -207,7 +207,7 @@ export default function AboutPage() {
       </section>
 
       {/* Meet The Team */}
-      <section ref={teamRef} className="py-20 lg:py-28 bg-bg-surface">
+      <section ref={teamRef} className="py-16 lg:py-20 bg-bg-surface">
         <Container>
           <motion.div
             initial="hidden"
@@ -264,7 +264,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 lg:py-28 bg-bg-dark overflow-hidden">
+      <section className="relative py-16 lg:py-20 bg-bg-dark overflow-hidden">
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(58,90,64,0.1),transparent_60%)]"
           aria-hidden="true"

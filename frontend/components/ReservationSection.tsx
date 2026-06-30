@@ -109,7 +109,7 @@ export default function ReservationSection() {
   };
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden bg-bg-dark">
+    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-dark">
       {/* Background decorative elements */}
       <div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_30%,rgba(58,90,64,0.15),transparent_60%)]"

@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/ui/Container";
 import { navLinks } from "@/lib/data";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
   Clock,
@@ -12,7 +12,7 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const socialLinks = [
   {
@@ -38,10 +38,43 @@ const contactInfo = [
   { icon: Clock, text: "Mon–Sun: 11:00 AM – 10:00 PM" },
 ];
 
+const footerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +86,13 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-bg-dark text-white overflow-hidden">
+    <motion.footer
+      ref={sectionRef}
+      className="relative bg-bg-dark text-white overflow-hidden"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={footerVariants}
+    >
       {/* Decorative top gradient line */}
       <div className="h-1 w-full bg-gradient-to-r from-transparent via-primary to-accent via-50%" />
 
@@ -66,19 +105,21 @@ export default function Footer() {
         className="absolute bottom-20 -right-20 h-80 w-80 rounded-full bg-accent/5 blur-3xl"
         aria-hidden="true"
       />
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-primary/3 blur-3xl"
+        aria-hidden="true"
+      />
 
       <Container className="relative z-10 py-14 lg:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8"
+        >
           {/* Brand */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.5,
-              delay: 0,
-              ease: [0.25, 0.46, 0.45, 0.94] as const,
-            }}
+            variants={itemVariants}
             className="sm:col-span-2 lg:col-span-4"
           >
             <Link
@@ -106,20 +147,34 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+
+            {/* Social Links */}
+            <div className="mt-8">
+              <div className="flex items-center gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 min-h-[44px] min-w-[44px]"
+                    aria-label={social.label}
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d={social.path} />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.5,
-              delay: 0.1,
-              ease: [0.25, 0.46, 0.45, 0.94] as const,
-            }}
-            className="lg:col-span-2"
-          >
+          <motion.div variants={itemVariants} className="lg:col-span-2">
             <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.15em] text-accent mb-5">
               Quick Links
             </h3>
@@ -139,17 +194,7 @@ export default function Footer() {
           </motion.div>
 
           {/* Hours */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.5,
-              delay: 0.2,
-              ease: [0.25, 0.46, 0.45, 0.94] as const,
-            }}
-            className="lg:col-span-2"
-          >
+          <motion.div variants={itemVariants} className="lg:col-span-2">
             <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.15em] text-accent mb-5">
               Hours
             </h3>
@@ -171,14 +216,7 @@ export default function Footer() {
 
           {/* Newsletter */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.5,
-              delay: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94] as const,
-            }}
+            variants={itemVariants}
             className="sm:col-span-2 lg:col-span-4"
           >
             <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.15em] text-accent mb-5">
@@ -190,14 +228,14 @@ export default function Footer() {
             </p>
             <form onSubmit={handleSubscribe} className="flex gap-2">
               <div className="relative flex-1">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email address"
                   required
-                  className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all duration-300"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-3 text-sm text-white placeholder:text-white/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all duration-300"
                 />
               </div>
               <button
@@ -218,32 +256,8 @@ export default function Footer() {
                 )}
               </button>
             </form>
-
-            {/* Social */}
-            <div className="mt-6">
-              <div className="flex items-center gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 min-h-[44px] min-w-[44px]"
-                    aria-label={social.label}
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d={social.path} />
-                    </svg>
-                  </a>
-                ))}
-              </div>
-            </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Copyright */}
         <motion.div
@@ -263,6 +277,6 @@ export default function Footer() {
           </div>
         </motion.div>
       </Container>
-    </footer>
+    </motion.footer>
   );
 }

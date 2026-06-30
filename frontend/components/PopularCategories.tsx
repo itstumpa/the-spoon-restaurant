@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { motion, useInView } from "framer-motion";
 import {
   Beef,
-  Burger,
   Fish,
+  Hamburger,
   IceCream,
   Pizza,
   Utensils,
@@ -29,7 +29,7 @@ const categories = [
     id: "burger",
     name: "Burger",
     count: "8 Varieties",
-    icon: Burger,
+    icon: Hamburger,
     image:
       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop&q=80",
     color: "from-red-500 to-rose-600",
@@ -102,7 +102,7 @@ export default function PopularCategories() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden bg-bg-surface">
+    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-surface">
       {/* Subtle background gradient */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"
@@ -122,7 +122,7 @@ export default function PopularCategories() {
             subtitle="Seven distinct categories, each crafted with the finest ingredients and authentic Mediterranean flair."
           />
 
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 lg:gap-6">
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 lg:gap-4">
             {categories.map((category, i) => (
               <motion.article
                 key={category.id}
@@ -154,14 +154,14 @@ export default function PopularCategories() {
                 {/* Content overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-end p-4 lg:p-6 text-center">
                   {/* Icon */}
-                  <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <category.icon className="h-6 w-6" aria-hidden="true" />
+                  <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <category.icon className="h-5 w-5" aria-hidden="true" />
                   </div>
 
-                  <h3 className="font-heading text-lg lg:text-xl font-bold text-white group-hover:text-primary-lighter transition-colors duration-300">
+                  <h3 className="font-heading text-base lg:text-lg font-bold text-white group-hover:text-primary-lighter transition-colors duration-300">
                     {category.name}
                   </h3>
-                  <p className="mt-1 text-white/80 text-sm font-body">
+                  <p className="mt-0.5 text-white/80 text-xs sm:text-sm font-body">
                     {category.count}
                   </p>
                 </div>
