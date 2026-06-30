@@ -118,9 +118,9 @@ export default function Navbar() {
               aria-label="The Spoon - Home"
             >
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/20 transition-colors duration-300 group-hover:bg-primary/30">
-                <UtensilsCrossed className="h-4 w-4 text-white" />
+                <UtensilsCrossed className="h-8 w-8 text-white" />
               </div>
-              <span className="font-heading text-2xl font-bold tracking-tight text-white hidden sm:block">
+              <span className="font-heading text-3xl font-bold tracking-tight text-white hidden sm:block">
                 The <span className="text-primary-lighter">Spoon</span>
               </span>
             </Link>
