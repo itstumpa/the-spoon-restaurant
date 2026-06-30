@@ -107,9 +107,20 @@ export default function Testimonials() {
       className="relative py-16 lg:py-20 bg-bg-dark overflow-hidden"
       style={{ opacity }}
     >
-      {/* Decorative background gradient */}
+      {/* ---- Hero-style Gradient Backgrounds ---- */}
+      {/* Main green radial glow */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(58,90,64,0.12),transparent_60%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_35%_50%,rgba(109,140,46,0.15),transparent_70%)]"
+        aria-hidden="true"
+      />
+      {/* Amber accent glow */}
+      <div
+        className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(200,133,58,0.08),transparent_70%)] blur-3xl"
+        aria-hidden="true"
+      />
+      {/* Subtle top-right light */}
+      <div
+        className="absolute top-0 right-0 h-64 w-64 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.04),transparent_70%)]"
         aria-hidden="true"
       />
       {/* Floating decorative blobs */}
@@ -122,10 +133,6 @@ export default function Testimonials() {
         className="absolute bottom-1/4 right-10 h-64 w-64 rounded-full bg-accent/5 blur-3xl animate-blob"
         aria-hidden="true"
         style={{ animationDuration: "25s", animationDelay: "-5s" }}
-      />
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full border border-primary/10 blur-2xl"
-        aria-hidden="true"
       />
       {/* Subtle grid pattern overlay */}
       <div

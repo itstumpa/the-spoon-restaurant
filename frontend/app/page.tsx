@@ -15,17 +15,17 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <WhyChooseUs />
       <PopularCategories />
+      <WhyChooseUs />
       <FeaturedDishes />
       <TodaysSpecial />
       <MeetOurChefs />
       <BestDeals />
+      <Gallery />
+      <AboutPreview />
       <ReservationSection />
       <Testimonials />
       <LatestNews />
-      <Gallery />
-      <AboutPreview />
     </>
   );
 }

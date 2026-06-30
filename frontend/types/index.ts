@@ -67,3 +67,13 @@ export interface ApiResponse {
   success: boolean;
   message: string;
 }
+
+export interface NewsItem {
+  id: number;
+  category: string;
+  date: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  author?: string;
+}
