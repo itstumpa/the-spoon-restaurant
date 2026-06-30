@@ -39,9 +39,8 @@ export default function ContactCTA() {
             Dining Experience?
           </h2>
           <p className="mt-4 font-body text-base leading-relaxed text-white/70 sm:text-lg">
-            Reserve your table today and discover why The Spoon is
-            Austin&apos;s favorite destination for Mediterranean-inspired
-            cuisine.
+            Reserve your table today and discover why The Spoon is Austin&apos;s
+            favorite destination for Mediterranean-inspired cuisine.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link

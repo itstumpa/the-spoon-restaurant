@@ -15,8 +15,7 @@ const mapInfo = {
   ],
   parking:
     "Complimentary valet Thu–Sun evenings. Street parking & public garage half a block away.",
-  transit:
-    "Bus routes 10, 20, and 30 stop at Maple & 2nd St, a 2-minute walk.",
+  transit: "Bus routes 10, 20, and 30 stop at Maple & 2nd St, a 2-minute walk.",
 };
 
 export default function ContactMap() {

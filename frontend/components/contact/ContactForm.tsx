@@ -138,8 +138,8 @@ export default function ContactForm() {
                   Message Sent!
                 </h3>
                 <p className="max-w-sm font-body text-base text-text-muted">
-                  Thank you for reaching out. We&apos;ll get back to you
-                  within 24 hours.
+                  Thank you for reaching out. We&apos;ll get back to you within
+                  24 hours.
                 </p>
                 <Button
                   variant="default"
@@ -312,8 +312,8 @@ export default function ContactForm() {
                   </Button>
 
                   <p className="text-center font-body text-xs text-text-muted">
-                    We&apos;ll respond within 24 hours. Your information is
-                    kept private and secure.
+                    We&apos;ll respond within 24 hours. Your information is kept
+                    private and secure.
                   </p>
                 </form>
               </div>

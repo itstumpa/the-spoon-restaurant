@@ -1,11 +1,11 @@
 "use client";
 
+import { ChevronDownIcon } from "@/components/menu/ChevronDownIcon";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { easeOut } from "./contact-variants";
-import { ChevronDownIcon } from "@/components/menu/ChevronDownIcon";
 
 export default function ContactHero() {
   const ref = useRef<HTMLDivElement>(null);
