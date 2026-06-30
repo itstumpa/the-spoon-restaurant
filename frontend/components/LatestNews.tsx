@@ -110,8 +110,7 @@ export default function LatestNews() {
 
   const prevFeatured = () =>
     setFeaturedIdx((p) => (p - 1 + totalFeatured) % totalFeatured);
-  const nextFeatured = () =>
-    setFeaturedIdx((p) => (p + 1) % totalFeatured);
+  const nextFeatured = () => setFeaturedIdx((p) => (p + 1) % totalFeatured);
 
   return (
     <motion.section

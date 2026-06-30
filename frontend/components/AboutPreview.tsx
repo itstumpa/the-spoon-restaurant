@@ -2,13 +2,7 @@
 
 import { Container } from "@/components/ui/Container";
 import { motion, useInView } from "framer-motion";
-import {
-  ArrowRight,
-  Award,
-  Leaf,
-  Star,
-  Users,
-} from "lucide-react";
+import { ArrowRight, Award, Leaf, Star, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -239,17 +233,17 @@ export default function AboutPreview() {
             {/* Paragraphs */}
             <div className="space-y-4 text-text-muted font-body text-base leading-relaxed">
               <p>
-                Nestled in the heart of Austin, The Spoon brings the
-                sun-soaked flavors of the Mediterranean to your table. Every
-                dish is crafted with passion, using time-honored recipes
-                passed down through generations.
+                Nestled in the heart of Austin, The Spoon brings the sun-soaked
+                flavors of the Mediterranean to your table. Every dish is
+                crafted with passion, using time-honored recipes passed down
+                through generations.
               </p>
               <p>
                 We believe that great food starts with great ingredients.
                 That&apos;s why we partner with local farms and artisans to
-                source the freshest produce, premium olive oils, and
-                sustainably raised proteins — ensuring every bite tells a
-                story of quality and care.
+                source the freshest produce, premium olive oils, and sustainably
+                raised proteins — ensuring every bite tells a story of quality
+                and care.
               </p>
             </div>
 
@@ -294,8 +288,6 @@ export default function AboutPreview() {
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>
-
-
           </motion.div>
         </motion.div>
       </Container>

@@ -1,8 +1,11 @@
 import type {
+  AboutValue,
+  GalleryImage,
   MenuItem,
   StatItem,
   TeamMember,
   Testimonial,
+  TimelineItem,
   ValueItem,
   WhyDinePoint,
 } from "@/types";
@@ -350,12 +353,280 @@ export const aboutStats: StatItem[] = [
   { id: "st3", value: 50000, suffix: "+", label: "Happy Guests Served" },
 ];
 
+export const aboutTestimonials: Testimonial[] = [
+  {
+    id: "at1",
+    name: "Sarah Mitchell",
+    text: "The Spoon has become our family's favorite spot. Every visit feels like a celebration — the ambiance, the flavors, and the warmth are simply unmatched in Austin.",
+    rating: 5,
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&q=80",
+    location: "Austin, TX",
+  },
+  {
+    id: "at2",
+    name: "James Rodriguez",
+    text: "As a food writer, I've dined at hundreds of restaurants. The Spoon stands out for its genuine commitment to quality and the way every dish tells a story of passion and tradition.",
+    rating: 5,
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&q=80",
+    location: "San Antonio, TX",
+  },
+  {
+    id: "at3",
+    name: "Emily Chen",
+    text: "We hosted our anniversary dinner here and it was magical. From the personalized menu to the thoughtful service, every detail was perfect. Thank you for making it unforgettable.",
+    rating: 5,
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop&q=80",
+    location: "Dallas, TX",
+  },
+  {
+    id: "at4",
+    name: "Michael Thompson",
+    text: "The wood-grilled specialties are out of this world. You can taste the decades of expertise in every bite. This is what authentic Mediterranean-inspired cuisine should taste like.",
+    rating: 4,
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&q=80",
+    location: "Houston, TX",
+  },
+];
+
+export const timelineMilestones: TimelineItem[] = [
+  {
+    id: "mil1",
+    year: "2010",
+    title: "Restaurant Founded",
+    description:
+      "The Spoon opened its doors on Maple Street with a simple mission: bring the warmth of home-cooked Mediterranean meals to the Austin community.",
+    icon: "UtensilsCrossed",
+  },
+  {
+    id: "mil2",
+    year: "2013",
+    title: "First Major Award",
+    description:
+      "Recognized as 'Best New Restaurant' by Austin Food Magazine, setting the stage for a decade of culinary excellence and community trust.",
+    icon: "Award",
+  },
+  {
+    id: "mil3",
+    year: "2016",
+    title: "Expanded Our Menu",
+    description:
+      "Introduced an expanded menu featuring wood-grilled specialties, artisanal cocktails, and a seasonal farm-to-table rotation that became our signature.",
+    icon: "Sparkles",
+  },
+  {
+    id: "mil4",
+    year: "2019",
+    title: "Michelin Recognition",
+    description:
+      "Earned a prestigious Michelin mention, drawing food enthusiasts from across Texas and cementing our reputation as a destination dining experience.",
+    icon: "Star",
+  },
+  {
+    id: "mil5",
+    year: "2024",
+    title: "Thousands of Happy Customers",
+    description:
+      "With over 50,000 guests served and a 4.9-star rating, we continue to grow while staying true to the family values that started it all.",
+    icon: "Heart",
+  },
+];
+
+export const galleryImages: GalleryImage[] = [
+  {
+    id: "g1",
+    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=1000&fit=crop&q=80",
+    alt: "Elegant dining area with warm ambient lighting",
+    width: 800,
+    height: 1000,
+  },
+  {
+    id: "g2",
+    src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&q=80",
+    alt: "Open kitchen with chefs preparing fresh dishes",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "g3",
+    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&q=80",
+    alt: "Beautifully plated gourmet dish",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "g4",
+    src: "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&h=1000&fit=crop&q=80",
+    alt: "Cozy outdoor patio seating area",
+    width: 800,
+    height: 1000,
+  },
+  {
+    id: "g5",
+    src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=800&fit=crop&q=80",
+    alt: "Signature dish presentation with vibrant colors",
+    width: 800,
+    height: 800,
+  },
+  {
+    id: "g6",
+    src: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=600&fit=crop&q=80",
+    alt: "Warm and inviting restaurant interior",
+    width: 800,
+    height: 600,
+  },
+];
+
+export const aboutValuesData: AboutValue[] = [
+  {
+    id: "av1",
+    icon: "Leaf",
+    title: "Farm-Fresh Quality",
+    description:
+      "We partner with local farms within 50 miles to bring you the freshest seasonal ingredients, supporting our community while delivering unparalleled flavor.",
+  },
+  {
+    id: "av2",
+    icon: "Award",
+    title: "Award-Winning Kitchen",
+    description:
+      "Our culinary team has earned multiple accolades including a Michelin mention and James Beard recognition, reflecting our relentless pursuit of excellence.",
+  },
+  {
+    id: "av3",
+    icon: "Heart",
+    title: "Family at Heart",
+    description:
+      "From our kitchen to your table, every dish is made with love. We treat every guest like family, creating an atmosphere where memories are made.",
+  },
+  {
+    id: "av4",
+    icon: "Recycle",
+    title: "Sustainable Practices",
+    description:
+      "We are committed to eco-friendly operations — from compostable packaging to zero-waste cooking and energy-efficient kitchen equipment.",
+  },
+  {
+    id: "av5",
+    icon: "Users",
+    title: "Community First",
+    description:
+      "We believe in giving back. Through charity events, local partnerships, and community programs, we strive to make Austin a better place for everyone.",
+  },
+  {
+    id: "av6",
+    icon: "Sparkles",
+    title: "Innovation Daily",
+    description:
+      "Our menu evolves with the seasons and the latest culinary trends, ensuring every visit brings a new and exciting dining experience to our guests.",
+  },
+];
+
+export const aboutPageStats: (StatItem & { displayValue?: string })[] = [
+  { id: "aps1", value: 15, suffix: "+", label: "Years of Excellence" },
+  { id: "aps2", value: 50000, suffix: "+", label: "Happy Guests" },
+  { id: "aps3", value: 120, suffix: "+", label: "Menu Dishes" },
+  {
+    id: "aps4",
+    value: 49,
+    suffix: "",
+    label: "Star Rating",
+    displayValue: "4.9★",
+  },
+];
+
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Menu", href: "/menu" },
-  { label: "Chefs", href: "/chefs" },
   { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+];
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+export const faqData: FAQItem[] = [
+  {
+    id: "faq1",
+    question: "Do I need a reservation?",
+    answer:
+      "While walk-ins are always welcome, we highly recommend making a reservation, especially on weekends and during peak hours. This ensures we can provide you with the best possible dining experience without any wait time.",
+  },
+  {
+    id: "faq2",
+    question: "Is parking available?",
+    answer:
+      "Yes, we offer complimentary valet parking from Thursday through Sunday evenings. Additionally, there is ample street parking and a public parking garage located just half a block from our restaurant on Maple Street.",
+  },
+  {
+    id: "faq3",
+    question: "Do you offer vegetarian or vegan options?",
+    answer:
+      "Absolutely! Our menu features a dedicated selection of vegetarian and vegan dishes, all crafted with the same Mediterranean-inspired flavors and farm-fresh ingredients. Our chefs are also happy to accommodate special dietary requests.",
+  },
+  {
+    id: "faq4",
+    question: "Can I book a private event?",
+    answer:
+      "Yes, we have a beautiful private dining room that can accommodate up to 40 guests, as well as a semi-private space for smaller gatherings. Our events team will work with you to create a customized menu and experience. Please reach out through our contact form for details.",
+  },
+  {
+    id: "faq5",
+    question: "Are pets allowed?",
+    answer:
+      "We love furry friends! Well-behaved pets are welcome on our outdoor patio, where we provide water bowls and treats. Service animals are always welcome in all areas of the restaurant.",
+  },
+  {
+    id: "faq6",
+    question: "Do you offer takeaway or delivery?",
+    answer:
+      "Yes, we offer both takeaway and delivery. You can place a takeaway order by calling us directly, or order delivery through our website and partner apps. Our packaging is eco-friendly and designed to keep your food fresh.",
+  },
+];
+
+export const socialLinks = [
+  {
+    id: "soc1",
+    platform: "Instagram",
+    handle: "@thespoonaustin",
+    url: "https://instagram.com",
+    icon: "Camera",
+    color: "hover:bg-pink-500",
+    description: "Behind-the-scenes, daily specials, and food photography.",
+  },
+  {
+    id: "soc2",
+    platform: "Facebook",
+    handle: "The Spoon Austin",
+    url: "https://facebook.com",
+    icon: "Users",
+    color: "hover:bg-blue-600",
+    description: "Events, updates, and community stories.",
+  },
+  {
+    id: "soc3",
+    platform: "X (Twitter)",
+    handle: "@thespoonatx",
+    url: "https://x.com",
+    icon: "MessageCircle",
+    color: "hover:bg-black",
+    description: "Latest news, chef features, and quick updates.",
+  },
+  {
+    id: "soc4",
+    platform: "YouTube",
+    handle: "The Spoon",
+    url: "https://youtube.com",
+    icon: "Play",
+    color: "hover:bg-red-600",
+    description: "Cooking tutorials, chef interviews, and virtual tours.",
+  },
 ];

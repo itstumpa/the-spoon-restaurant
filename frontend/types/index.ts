@@ -21,6 +21,7 @@ export interface Testimonial {
   text: string;
   rating: number;
   avatar?: string;
+  location?: string;
 }
 
 export interface TeamMember {
@@ -60,12 +61,37 @@ export interface ReservationFormData {
 export interface ContactFormData {
   name: string;
   email: string;
+  phone: string;
+  subject: string;
   message: string;
 }
 
 export interface ApiResponse {
   success: boolean;
   message: string;
+}
+
+export interface TimelineItem {
+  id: string;
+  year: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface GalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+export interface AboutValue {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
 }
 
 export interface NewsItem {

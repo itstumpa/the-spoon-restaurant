@@ -386,7 +386,7 @@ export default function Footer() {
                     <span className="h-3 w-px bg-white/[0.06]" />
                   )}
                 </span>
-              )
+              ),
             )}
           </div>
         </motion.div>
