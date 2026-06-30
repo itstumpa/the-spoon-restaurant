@@ -31,8 +31,8 @@
   --color-border: #d6d0c4;
   --color-ring: rgba(58, 90, 64, 0.3);
 
-  --color-white: #ffffff;
-  --color-black: #000000;
+  --color-white: 255 255 255;
+  --color-black: 0 0 0;
 
   /* ---- Surfaces ---- */
   --color-card: #ffffff;

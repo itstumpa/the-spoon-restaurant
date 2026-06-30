@@ -102,7 +102,7 @@ export default function PopularCategories() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-16 lg:py-20 overflow-hidden bg-bg-surface">
+    <section className="relative py-6 lg:py-12 overflow-hidden bg-bg-surface">
       {/* Subtle background gradient */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"
@@ -119,7 +119,6 @@ export default function PopularCategories() {
           <SectionHeading
             badge="Popular Categories"
             title="Explore Our Culinary World"
-            subtitle="Seven distinct categories, each crafted with the finest ingredients and authentic Mediterranean flair."
           />
 
           <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 lg:gap-4">
@@ -139,9 +138,9 @@ export default function PopularCategories() {
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 14vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  {/* Gradient overlay */}
+                  {/* Dark blur overlay */}
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+                    className="absolute inset-0 bg-black/55"
                     aria-hidden="true"
                   />
                   {/* Category color accent bar */}

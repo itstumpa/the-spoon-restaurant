@@ -23,8 +23,8 @@ const config: Config = {
         "text-muted": "rgb(var(--color-text-muted))",
         "text-light": "rgb(var(--color-text-light))",
         border: "var(--color-border)",
-        white: "var(--color-white)",
-        black: "var(--color-black)",
+        white: "rgb(var(--color-white))",
+        black: "rgb(var(--color-black))",
       },
       fontFamily: {
         heading: ["var(--font-heading)", "sans-serif"],
